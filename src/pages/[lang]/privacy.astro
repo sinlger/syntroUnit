@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PrivacyComponent from "../../components/infopages/Privacy.astro";
+import { languages } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang },
+  }));
+}
+---
+
+<BaseLayout>
+  <PrivacyComponent />
+</BaseLayout>

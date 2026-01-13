@@ -1,73 +1,155 @@
 ---
 import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
-
-const featuresList = [
-  {
-    title: "Astro, Tailwind CSS and Alpine.js",
-    description: "These are the popular technologies behind Syntro.",
-  },
-  {
-    title: "Includes 6 pages",
-    description:
-      "You will find this landing, FAQ, terms, privacy, sign up, and sign in pages.",
-  },
-  {
-    title: "Different sections",
-    description:
-      "The starter includes different feature sections, a pricing table, testimonial, CTA, and full forms.",
-  },
-];
+import {
+  Ruler,
+  ArrowRight,
+  Weight,
+  Maximize,
+  Banknote,
+  Thermometer,
+  Box,
+  HardDrive,
+  Clock,
+  Zap,
+  ShieldCheck,
+  Smartphone
+} from 'lucide-astro';
 ---
+<!-- 主体内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- 头部标题 -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-foreground mb-4 tracking-tight">
+                快速、精准的单位换算
+            </h1>
+            <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                选择下方您需要转换的单位类别，我们提供全球通用的度量衡及实时汇率数据支持。
+            </p>
+        </div>
 
-<section class="overflow-hidden">
-  <div class="px-8 pt-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
-    <div class="max-w-2xl text-center mx-auto lg:text-balance mb-10">
-      <p class="text-sm leading-normal font-bold uppercase text-accent-600">
-        Tagline
-      </p>
-      <h2
-        class="text-xl/snug leading-tight tracking-tight sm:text-2xl/snug md:text-3xl/snug capitalize lg:text-4xl/snug mt-4 font-medium text-base-900">
-        An astro template built with Astro and Tailwind CSS for your next
-        project
-      </h2>
-      <p class="text-base leading-normal mt-4 text-base-500 font-medium">
-        The fastest method for working together on staging and temporary
-        environments.
-      </p>
-      <div
-        class="flex flex-wrap items-center gap-2 justify-center mx-auto mt-12">
-        <a
-          href="https://github.com/bekturaslan/syntro-astro"
-          class="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-base-500 bg-white hover:bg-accent-100 ring-1 ring-base-200 focus:ring-accent-100 hover:text-accent-600 h-9 px-4 py-2 text-sm font-medium rounded-md">
-          Get This Template
-        </a>
-        <a
-          href="https://getastrothemes.com/free-astro-themes-templates/"
-          class="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-white bg-accent-600 hover:bg-accent-700 focus:ring-accent-700/50 h-9 px-4 py-2 text-sm font-medium rounded-md">
-          More Free Astro themes
-        </a>
-      </div>
-    </div>
-    <div
-      class="lg:gap-x-8 lg:grid-cols-3 max-w-4xl mt-8 mx-auto sm:gap-x-6 sm:gap-y-12 sm:grid sm:grid-cols-2 sm:space-y-0 space-y-6 text-center text-sm items-start">
-      {
-        featuresList.map(({ title, description }) => (
-          <div class="text-base-500 lg:text-balance">
-            <strong class="text-base-700">{title}</strong> ━ {description}
-          </div>
-        ))
-      }
-    </div>
-    <div class="relative w-full mx-auto max-w-7xl items-center py-12 pb-12">
-      <div class="p-10 bg-accent-50 rounded-2xl">
-        <OptimizedImage
-          src="/dashboard.png"
-          alt="#_"
-          width={1200}
-          height={700}
-          class="relative w-full ring-4 ring-base-50 border border-base-200 lg:rounded-2xl object-cover rounded"
-        />
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- 单位分类网格 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- 长度换算 -->
+            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+                <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <Ruler class="w-6 h-6" />
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-foreground">长度换算</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">米、千米、英尺、英寸、厘米、海里等。</p>
+                <span class="text-blue-600 dark:text-blue-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    进入换算 <ArrowRight class="w-4 h-4" />
+                </span>
+            </a>
+
+            <!-- 重量换算 -->
+            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+                <div class="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                    <Weight class="w-6 h-6" />
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-foreground">重量换算</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">克、千克、吨、磅、盎司、市斤等。</p>
+                <span class="text-indigo-600 dark:text-indigo-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    进入换算 <ArrowRight class="w-4 h-4" />
+                </span>
+            </a>
+
+            <!-- 面积换算 -->
+            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+                <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                    <Maximize class="w-6 h-6" />
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-foreground">面积换算</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">平方米、公顷、亩、平方英里、英亩等。</p>
+                <span class="text-emerald-600 dark:text-emerald-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    进入换算 <ArrowRight class="w-4 h-4" />
+                </span>
+            </a>
+
+            <!-- 货币换算 -->
+            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+                <div class="w-12 h-12 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                    <Banknote class="w-6 h-6" />
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-foreground">货币换算</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">人民币、美元、欧元、日元、比特币等。</p>
+                <span class="text-amber-600 dark:text-amber-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    进入换算 <ArrowRight class="w-4 h-4" />
+                </span>
+            </a>
+
+            <!-- 温度换算 -->
+            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+                <div class="w-12 h-12 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                    <Thermometer class="w-6 h-6" />
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-foreground">温度换算</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">摄氏度、华氏度、开尔文、列氏度等。</p>
+                <span class="text-orange-600 dark:text-orange-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    进入换算 <ArrowRight class="w-4 h-4" />
+                </span>
+            </a>
+
+            <!-- 体积换算 -->
+            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+                <div class="w-12 h-12 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-cyan-600 group-hover:text-white transition-colors">
+                    <Box class="w-6 h-6" />
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-foreground">体积/容量</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">立方米、升、毫升、加仑、夸脱等。</p>
+                <span class="text-cyan-600 dark:text-cyan-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    进入换算 <ArrowRight class="w-4 h-4" />
+                </span>
+            </a>
+
+            <!-- 数据换算 -->
+            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+                <div class="w-12 h-12 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                    <HardDrive class="w-6 h-6" />
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-foreground">数据存储</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">B、KB、MB、GB、TB、PB等单位。</p>
+                <span class="text-purple-600 dark:text-purple-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    进入换算 <ArrowRight class="w-4 h-4" />
+                </span>
+            </a>
+
+            <!-- 时间换算 -->
+            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+                <div class="w-12 h-12 bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-rose-600 group-hover:text-white transition-colors">
+                    <Clock class="w-6 h-6" />
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-foreground">时间换算</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">秒、分钟、小时、天、周、年等。</p>
+                <span class="text-rose-600 dark:text-rose-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    进入换算 <ArrowRight class="w-4 h-4" />
+                </span>
+            </a>
+
+        </div>
+
+        <!-- 底部特色说明 -->
+        <section class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-border pt-16">
+            <div class="flex flex-col items-center text-center">
+                <div class="text-primary mb-4">
+                    <Zap class="w-8 h-8" />
+                </div>
+                <h4 class="font-bold text-lg mb-2 text-foreground">实时计算</h4>
+                <p class="text-muted-foreground text-sm">无需刷新页面，输入数值立得结果，毫秒级响应速度。</p>
+            </div>
+            <div class="flex flex-col items-center text-center">
+                <div class="text-primary mb-4">
+                    <ShieldCheck class="w-8 h-8" />
+                </div>
+                <h4 class="font-bold text-lg mb-2 text-foreground">数据精准</h4>
+                <p class="text-muted-foreground text-sm">严格遵循国际度量衡标准，汇率数据每小时同步更新。</p>
+            </div>
+            <div class="flex flex-col items-center text-center">
+                <div class="text-primary mb-4">
+                    <Smartphone class="w-8 h-8" />
+                </div>
+                <h4 class="font-bold text-lg mb-2 text-foreground">多端适配</h4>
+                <p class="text-muted-foreground text-sm">无论是在桌面浏览器还是移动端，都能获得极致体验。</p>
+            </div>
+        </section>
+    </main>

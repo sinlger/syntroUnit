@@ -2,17 +2,26 @@
 import BaseHead from "../components/BaseHead.astro";
 import Navigation from "../components/global/Navigation.astro";
 import Footer from "../components/global/Footer.astro";
-import { Font } from "astro:assets";
+const currentLocale = Astro.currentLocale ?? "en";
 ---
 
 <html
-  lang="en"
-  class="scroll-smooth selection:bg-accent-500 selection:text-white no-touchevents hydrated">
+  lang={currentLocale}
+  class="scroll-smooth selection:bg-primary selection:text-primary-foreground no-touchevents hydrated">
   <head>
     <BaseHead />
-    <Font cssVariable="--font-sans" preload />
+    <script is:inline>
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script>
   </head>
-  <body class="bg-white flex flex-col min-h-svh">
+  <body class="bg-background text-foreground flex flex-col min-h-svh">
     <Navigation />
     <main class="grow"><slot /></main>
     <Footer />

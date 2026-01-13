@@ -1,19 +1,20 @@
 import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
+import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from "@tailwindcss/vite";
+import react from "@astrojs/react";
 export default defineConfig({
   site: "https://yoursite.com",
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Inter",
-        cssVariable: "--font-sans",
-        weights: [400, 500],
-      }
-    ],
+  adapter: cloudflare(),
+  output:"static",
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "zh"],
+    routing: {
+      prefixDefaultLocale: true,
+    },
   },
-  integrations: [sitemap()],
+  integrations: [sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],
   },

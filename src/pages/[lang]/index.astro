@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/landing/Hero.astro";
+import { languages } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang },
+  }));
+}
+---
+
+<BaseLayout>
+  <Hero />
+</BaseLayout>

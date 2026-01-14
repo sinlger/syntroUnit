@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   Smartphone
 } from 'lucide-astro';
+const currentLocale = Astro.currentLocale ?? "en";
 ---
 <!-- 主体内容 -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -31,7 +32,7 @@ import {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
             <!-- 长度换算 -->
-            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+            <a href={`/${currentLocale}/length`} class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
                 <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     <Ruler class="w-6 h-6" />
                 </div>
@@ -43,7 +44,7 @@ import {
             </a>
 
             <!-- 重量换算 -->
-            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+            <a href={`/${currentLocale}/weight`} class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
                 <div class="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                     <Weight class="w-6 h-6" />
                 </div>
@@ -55,7 +56,7 @@ import {
             </a>
 
             <!-- 面积换算 -->
-            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+            <a href={`/${currentLocale}/area`} class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
                 <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                     <Maximize class="w-6 h-6" />
                 </div>
@@ -67,7 +68,7 @@ import {
             </a>
 
             <!-- 货币换算 -->
-            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+            <a href={`/${currentLocale}/currency`} class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
                 <div class="w-12 h-12 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                     <Banknote class="w-6 h-6" />
                 </div>
@@ -79,7 +80,7 @@ import {
             </a>
 
             <!-- 温度换算 -->
-            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+            <a href={`/${currentLocale}/temperature`} class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
                 <div class="w-12 h-12 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors">
                     <Thermometer class="w-6 h-6" />
                 </div>
@@ -91,7 +92,7 @@ import {
             </a>
 
             <!-- 体积换算 -->
-            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+            <a href={`/${currentLocale}/volume`} class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
                 <div class="w-12 h-12 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-cyan-600 group-hover:text-white transition-colors">
                     <Box class="w-6 h-6" />
                 </div>
@@ -103,7 +104,7 @@ import {
             </a>
 
             <!-- 数据换算 -->
-            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+            <a href={`/${currentLocale}/data`} class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
                 <div class="w-12 h-12 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
                     <HardDrive class="w-6 h-6" />
                 </div>
@@ -115,7 +116,7 @@ import {
             </a>
 
             <!-- 时间换算 -->
-            <a href="#" class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
+            <a href={`/${currentLocale}/time`} class="group bg-card p-8 rounded-2xl shadow-sm border border-border hover:shadow-xl hover:border-primary transition-all duration-300">
                 <div class="w-12 h-12 bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-rose-600 group-hover:text-white transition-colors">
                     <Clock class="w-6 h-6" />
                 </div>

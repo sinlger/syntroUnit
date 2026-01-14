@@ -1,0 +1,112 @@
+[
+    {
+        "group_id": "metric_area",
+        "units": [
+            {
+                "id": "mm2",
+                "symbol": "mm²",
+                "ratio": 0.000001
+            },
+            {
+                "id": "cm2",
+                "symbol": "cm²",
+                "ratio": 0.0001
+            },
+            {
+                "id": "dm2",
+                "symbol": "dm²",
+                "ratio": 0.01
+            },
+            {
+                "id": "m2",
+                "symbol": "m²",
+                "ratio": 1
+            },
+            {
+                "id": "a",
+                "symbol": "a",
+                "ratio": 100
+            },
+            {
+                "id": "ha",
+                "symbol": "ha",
+                "ratio": 10000
+            },
+            {
+                "id": "km2",
+                "symbol": "km²",
+                "ratio": 1000000
+            }
+        ]
+    },
+    {
+        "group_id": "imperial_area",
+        "units": [
+            {
+                "id": "in2",
+                "symbol": "in²",
+                "ratio": 0.00064516
+            },
+            {
+                "id": "ft2",
+                "symbol": "ft²",
+                "ratio": 0.09290304
+            },
+            {
+                "id": "yd2",
+                "symbol": "yd²",
+                "ratio": 0.83612736
+            },
+            {
+                "id": "ro",
+                "symbol": "ro",
+                "ratio": 1011.7141
+            },
+            {
+                "id": "ac",
+                "symbol": "ac",
+                "ratio": 4046.8564
+            },
+            {
+                "id": "mi2",
+                "symbol": "mi²",
+                "ratio": 2589988.11
+            }
+        ]
+    },
+    {
+        "group_id": "east_asian_area",
+        "units": [
+            {
+                "id": "j_tsubo",
+                "symbol": "tsubo",
+                "ratio": 3.305785
+            },
+            {
+                "id": "j_se",
+                "symbol": "se",
+                "ratio": 99.17355
+            },
+            {
+                "id": "j_tan",
+                "symbol": "tan",
+                "ratio": 991.7355
+            },
+            {
+                "id": "j_cho",
+                "symbol": "cho",
+                "ratio": 9917.355
+            },
+            {
+                "id": "c_mu",
+                "symbol": "mu",
+                "ratio": 666.66666667
+            },
+            {
+                "id": "c_qing",
+                "symbol": "qing",
+                "ratio": 66666.6666667
+            }
+        ]
+    }
+]

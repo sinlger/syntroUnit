@@ -48,6 +48,7 @@ export function LanguageSwitcher({ currentLang, url }: LanguageSwitcherProps) {
             <a 
               href={getPathForLang(lang)}
               className={currentLang === lang ? "bg-accent text-accent-foreground" : ""}
+              data-astro-prefetch
             >
               {label}
             </a>

@@ -1,0 +1,91 @@
+{
+    "length": {
+        "title": "Length Units",
+        "groups": {
+            "metric": "Metric System (SI)",
+            "imperial": "Imperial Units",
+            "chinese_market": "Chinese Units",
+            "astronomy": "Astronomical Units"
+        },
+        "units": {
+            "nm": "Nanometer",
+            "um": "Micrometer",
+            "mm": "Millimeter",
+            "cm": "Centimeter",
+            "dm": "Decimeter",
+            "m": "Meter",
+            "km": "Kilometer",
+            "in": "Inch",
+            "ft": "Foot",
+            "yd": "Yard",
+            "mi": "Mile",
+            "nmi": "Nautical Mile",
+            "c_cun": "Cun",
+            "c_chi": "Chi",
+            "c_li_dist": "Li",
+            "au": "Astronomical Unit",
+            "ly": "Light Year"
+        }
+    },
+    "weight": {
+        "title": "Weight Units",
+        "groups": {
+            "metric_weight": "Metric Mass",
+            "imperial_us_weight": "Imperial/US Weight",
+            "precious_metal": "Precious Metals",
+            "chinese_weight": "Chinese Units"
+        },
+        "units": {
+            "ug": "Microgram",
+            "mg": "Milligram",
+            "g": "Gram",
+            "kg": "Kilogram",
+            "t": "Metric Ton",
+            "q": "Quintal",
+            "gr": "Grain",
+            "dr": "Dram",
+            "oz": "Ounce",
+            "lb": "Pound",
+            "st": "Stone",
+            "ton_us": "Short Ton",
+            "ton_uk": "Long Ton",
+            "oz_t": "Troy Ounce",
+            "ct": "Carat",
+            "c_li": "Li",
+            "c_fen": "Fen",
+            "c_qian": "Qian",
+            "c_liang": "Liang",
+            "c_jin": "Jin",
+            "c_dan": "Dan"
+        }
+    },
+    "area": {
+        "title": "Area Units",
+        "groups": {
+            "metric_area": "Metric Area",
+            "imperial_area": "Imperial/US Area",
+            "east_asian_area": "East Asian Traditional Area"
+        },
+        "units": {
+            "mm2": "Sq Millimeter",
+            "cm2": "Sq Centimeter",
+            "dm2": "Sq Decimeter",
+            "m2": "Sq Meter",
+            "a": "Are",
+            "ha": "Hectare",
+            "km2": "Sq Kilometer",
+            "in2": "Sq Inch",
+            "ft2": "Sq Foot",
+            "yd2": "Sq Yard",
+            "ro": "Rood",
+            "ac": "Acre",
+            "mi2": "Sq Mile",
+            "j_tsubo": "Tsubo",
+            "j_se": "Se",
+            "j_tan": "Tan",
+            "j_cho": "Cho",
+            "c_mu": "Mu",
+            "c_qing": "Qing"
+        }
+    }
+}

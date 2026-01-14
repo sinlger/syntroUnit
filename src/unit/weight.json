@@ -1,0 +1,127 @@
+[
+    {
+        "group_id": "metric_weight",
+        "units": [
+            {
+                "id": "ug",
+                "symbol": "μg",
+                "ratio": 0.000000001
+            },
+            {
+                "id": "mg",
+                "symbol": "mg",
+                "ratio": 0.000001
+            },
+            {
+                "id": "g",
+                "symbol": "g",
+                "ratio": 0.001
+            },
+            {
+                "id": "kg",
+                "symbol": "kg",
+                "ratio": 1
+            },
+            {
+                "id": "t",
+                "symbol": "t",
+                "ratio": 1000
+            },
+            {
+                "id": "q",
+                "symbol": "q",
+                "ratio": 100
+            }
+        ]
+    },
+    {
+        "group_id": "imperial_us_weight",
+        "units": [
+            {
+                "id": "gr",
+                "symbol": "gr",
+                "ratio": 0.00006479891
+            },
+            {
+                "id": "dr",
+                "symbol": "dr",
+                "ratio": 0.001771845
+            },
+            {
+                "id": "oz",
+                "symbol": "oz",
+                "ratio": 0.028349523
+            },
+            {
+                "id": "lb",
+                "symbol": "lb",
+                "ratio": 0.45359237
+            },
+            {
+                "id": "st",
+                "symbol": "st",
+                "ratio": 6.35029318
+            },
+            {
+                "id": "ton_us",
+                "symbol": "ton(US)",
+                "ratio": 907.18474
+            },
+            {
+                "id": "ton_uk",
+                "symbol": "ton(UK)",
+                "ratio": 1016.0469
+            }
+        ]
+    },
+    {
+        "group_id": "precious_metal",
+        "units": [
+            {
+                "id": "oz_t",
+                "symbol": "oz t",
+                "ratio": 0.031103476
+            },
+            {
+                "id": "ct",
+                "symbol": "ct",
+                "ratio": 0.0002
+            }
+        ]
+    },
+    {
+        "group_id": "chinese_weight",
+        "units": [
+            {
+                "id": "c_li",
+                "symbol": "li",
+                "ratio": 0.00005
+            },
+            {
+                "id": "c_fen",
+                "symbol": "fen",
+                "ratio": 0.0005
+            },
+            {
+                "id": "c_qian",
+                "symbol": "qian",
+                "ratio": 0.005
+            },
+            {
+                "id": "c_liang",
+                "symbol": "liang",
+                "ratio": 0.05
+            },
+            {
+                "id": "c_jin",
+                "symbol": "jin",
+                "ratio": 0.5
+            },
+            {
+                "id": "c_dan",
+                "symbol": "dan",
+                "ratio": 50
+            }
+        ]
+    }
+]

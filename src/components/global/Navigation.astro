@@ -1,21 +1,13 @@
 ---
 import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
 import {
-  getLangFromUrl,
-  useTranslations,
-  useTranslatedPath,
-  getRouteFromUrl,
+  getLangFromUrl
 } from "../../i18n/utils";
 import { Sun, Moon } from "lucide-astro";
-import { LanguageSwitcher } from "./LanguageSwitcher";
+import { LanguageSwitcher } from "../react/LanguageSwitcher";
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 
-const otherLang = lang === "en" ? "zh" : "en";
-const otherLangLabel = lang === "en" ? "中文" : "English";
-const otherLangPath = getRouteFromUrl(Astro.url, otherLang);
 ---
 
 <nav class="bg-background border-b border-border sticky top-0 z-50">
@@ -37,7 +29,7 @@ const otherLangPath = getRouteFromUrl(Astro.url, otherLang);
         </span>
       </div>
       <div class="hidden md:flex space-x-8 text-sm font-medium text-muted-foreground">
-        <a href="#" class="hover:text-primary transition">首页</a>
+        <a href="/" class="hover:text-primary transition">首页</a>
         <a href="#" class="hover:text-primary transition">常用</a>
         <a href="#" class="hover:text-primary transition">收藏</a>
         <a href="#" class="hover:text-primary transition">关于</a>

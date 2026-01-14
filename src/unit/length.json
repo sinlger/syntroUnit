@@ -1,0 +1,39 @@
+[
+  {
+    "group_id": "metric",
+    "units": [
+      {"id": "nm", "symbol": "nm", "ratio": 1e-9},
+      {"id": "um", "symbol": "μm", "ratio": 1e-6},
+      {"id": "mm", "symbol": "mm", "ratio": 0.001},
+      {"id": "cm", "symbol": "cm", "ratio": 0.01},
+      {"id": "dm", "symbol": "dm", "ratio": 0.1},
+      {"id": "m", "symbol": "m", "ratio": 1},
+      {"id": "km", "symbol": "km", "ratio": 1000}
+    ]
+  },
+  {
+    "group_id": "imperial",
+    "units": [
+      {"id": "in", "symbol": "in", "ratio": 0.0254},
+      {"id": "ft", "symbol": "ft", "ratio": 0.3048},
+      {"id": "yd", "symbol": "yd", "ratio": 0.9144},
+      {"id": "mi", "symbol": "mi", "ratio": 1609.344},
+      {"id": "nmi", "symbol": "nmi", "ratio": 1852}
+    ]
+  },
+  {
+    "group_id": "chinese_market",
+    "units": [
+      {"id": "c_cun", "symbol": "cun", "ratio": 0.033333333333333},
+      {"id": "c_chi", "symbol": "chi", "ratio": 0.333333333333333},
+      {"id": "c_li_dist", "symbol": "li", "ratio": 500}
+    ]
+  },
+  {
+    "group_id": "astronomy",
+    "units": [
+      {"id": "au", "symbol": "AU", "ratio": 149597870700},
+      {"id": "ly", "symbol": "ly", "ratio": 9460730472580800}
+    ]
+  }
+]

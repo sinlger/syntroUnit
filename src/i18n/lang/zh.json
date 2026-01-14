@@ -1,0 +1,91 @@
+{
+    "length": {
+        "title": "长度单位",
+        "groups": {
+            "metric": "公制系统 (SI)",
+            "imperial": "英美制单位",
+            "chinese_market": "中国市制",
+            "astronomy": "天文单位"
+        },
+        "units": {
+            "nm": "纳米",
+            "um": "微米",
+            "mm": "毫米",
+            "cm": "厘米",
+            "dm": "分米",
+            "m": "米",
+            "km": "千米/公里",
+            "in": "英寸",
+            "ft": "英尺",
+            "yd": "码",
+            "mi": "英里",
+            "nmi": "海里",
+            "c_cun": "市寸",
+            "c_chi": "市尺",
+            "c_li_dist": "里",
+            "au": "天文单位",
+            "ly": "光年"
+        }
+    },
+    "weight": {
+        "title": "重量单位",
+        "groups": {
+            "metric_weight": "公制重量 (SI)",
+            "imperial_us_weight": "英美制重量",
+            "precious_metal": "贵金属计量",
+            "chinese_weight": "中国市制重量"
+        },
+        "units": {
+            "ug": "微克",
+            "mg": "毫克",
+            "g": "克",
+            "kg": "千克/公斤",
+            "t": "吨",
+            "q": "公担",
+            "gr": "格令",
+            "dr": "打兰",
+            "oz": "盎司",
+            "lb": "磅",
+            "st": "英石",
+            "ton_us": "美吨(短吨)",
+            "ton_uk": "英吨(长吨)",
+            "oz_t": "金衡盎司",
+            "ct": "克拉",
+            "c_li": "厘",
+            "c_fen": "分",
+            "c_qian": "钱",
+            "c_liang": "两",
+            "c_jin": "斤",
+            "c_dan": "担"
+        }
+    },
+    "area": {
+        "title": "面积单位",
+        "groups": {
+            "metric_area": "公制面积",
+            "imperial_area": "英美制面积",
+            "east_asian_area": "东亚传统面积 (中/日/台)"
+        },
+        "units": {
+            "mm2": "平方毫米",
+            "cm2": "平方厘米",
+            "dm2": "平方分米",
+            "m2": "平方米",
+            "a": "公亩",
+            "ha": "公顷",
+            "km2": "平方千米",
+            "in2": "平方英寸",
+            "ft2": "平方英尺",
+            "yd2": "平方码",
+            "ro": "罗得(Rood)",
+            "ac": "英亩",
+            "mi2": "平方英里",
+            "j_tsubo": "坪 (Tsubo)",
+            "j_se": "亩 (Se)",
+            "j_tan": "反 (Tan)",
+            "j_cho": "町 (Cho)",
+            "c_mu": "市亩",
+            "c_qing": "市顷"
+        }
+    }
+}

@@ -14,6 +14,13 @@ import {
   ShieldCheck,
   Smartphone
 } from 'lucide-astro';
+import {
+  getLangFromUrl,
+  useTranslations
+} from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const currentLocale = Astro.currentLocale ?? "en";
 ---
 <!-- 主体内容 -->
@@ -21,10 +28,10 @@ const currentLocale = Astro.currentLocale ?? "en";
         <!-- 头部标题 -->
         <div class="text-center mb-16">
             <h1 class="text-4xl md:text-5xl font-extrabold text-foreground mb-4 tracking-tight">
-                快速、精准的单位换算
+                {t('hero.title')}
             </h1>
             <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-                选择下方您需要转换的单位类别，我们提供全球通用的度量衡及实时汇率数据支持。
+                {t('hero.subtitle')}
             </p>
         </div>
 
@@ -36,10 +43,10 @@ const currentLocale = Astro.currentLocale ?? "en";
                 <div class="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     <Ruler class="w-6 h-6" />
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-foreground">长度换算</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed mb-4">米、千米、英尺、英寸、厘米、海里等。</p>
+                <h3 class="text-xl font-bold mb-2 text-foreground">{t('hero.units.length.title')}</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">{t('hero.units.length.description')}</p>
                 <span class="text-blue-600 dark:text-blue-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    进入换算 <ArrowRight class="w-4 h-4" />
+                    {t('hero.enter_conversion')} <ArrowRight class="w-4 h-4" />
                 </span>
             </a>
 
@@ -48,10 +55,10 @@ const currentLocale = Astro.currentLocale ?? "en";
                 <div class="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                     <Weight class="w-6 h-6" />
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-foreground">重量换算</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed mb-4">克、千克、吨、磅、盎司、市斤等。</p>
+                <h3 class="text-xl font-bold mb-2 text-foreground">{t('hero.units.weight.title')}</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">{t('hero.units.weight.description')}</p>
                 <span class="text-indigo-600 dark:text-indigo-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    进入换算 <ArrowRight class="w-4 h-4" />
+                    {t('hero.enter_conversion')} <ArrowRight class="w-4 h-4" />
                 </span>
             </a>
 
@@ -60,10 +67,10 @@ const currentLocale = Astro.currentLocale ?? "en";
                 <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                     <Maximize class="w-6 h-6" />
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-foreground">面积换算</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed mb-4">平方米、公顷、亩、平方英里、英亩等。</p>
+                <h3 class="text-xl font-bold mb-2 text-foreground">{t('hero.units.area.title')}</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">{t('hero.units.area.description')}</p>
                 <span class="text-emerald-600 dark:text-emerald-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    进入换算 <ArrowRight class="w-4 h-4" />
+                    {t('hero.enter_conversion')} <ArrowRight class="w-4 h-4" />
                 </span>
             </a>
 
@@ -72,10 +79,10 @@ const currentLocale = Astro.currentLocale ?? "en";
                 <div class="w-12 h-12 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                     <Banknote class="w-6 h-6" />
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-foreground">货币换算</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed mb-4">人民币、美元、欧元、日元、比特币等。</p>
+                <h3 class="text-xl font-bold mb-2 text-foreground">{t('hero.units.currency.title')}</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">{t('hero.units.currency.description')}</p>
                 <span class="text-amber-600 dark:text-amber-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    进入换算 <ArrowRight class="w-4 h-4" />
+                    {t('hero.enter_conversion')} <ArrowRight class="w-4 h-4" />
                 </span>
             </a>
 
@@ -84,10 +91,10 @@ const currentLocale = Astro.currentLocale ?? "en";
                 <div class="w-12 h-12 bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-600 group-hover:text-white transition-colors">
                     <Thermometer class="w-6 h-6" />
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-foreground">温度换算</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed mb-4">摄氏度、华氏度、开尔文、列氏度等。</p>
+                <h3 class="text-xl font-bold mb-2 text-foreground">{t('hero.units.temperature.title')}</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">{t('hero.units.temperature.description')}</p>
                 <span class="text-orange-600 dark:text-orange-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    进入换算 <ArrowRight class="w-4 h-4" />
+                    {t('hero.enter_conversion')} <ArrowRight class="w-4 h-4" />
                 </span>
             </a>
 
@@ -96,10 +103,10 @@ const currentLocale = Astro.currentLocale ?? "en";
                 <div class="w-12 h-12 bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-cyan-600 group-hover:text-white transition-colors">
                     <Box class="w-6 h-6" />
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-foreground">体积/容量</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed mb-4">立方米、升、毫升、加仑、夸脱等。</p>
+                <h3 class="text-xl font-bold mb-2 text-foreground">{t('hero.units.volume.title')}</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">{t('hero.units.volume.description')}</p>
                 <span class="text-cyan-600 dark:text-cyan-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    进入换算 <ArrowRight class="w-4 h-4" />
+                    {t('hero.enter_conversion')} <ArrowRight class="w-4 h-4" />
                 </span>
             </a>
 
@@ -108,10 +115,10 @@ const currentLocale = Astro.currentLocale ?? "en";
                 <div class="w-12 h-12 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
                     <HardDrive class="w-6 h-6" />
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-foreground">数据存储</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed mb-4">B、KB、MB、GB、TB、PB等单位。</p>
+                <h3 class="text-xl font-bold mb-2 text-foreground">{t('hero.units.data.title')}</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">{t('hero.units.data.description')}</p>
                 <span class="text-purple-600 dark:text-purple-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    进入换算 <ArrowRight class="w-4 h-4" />
+                    {t('hero.enter_conversion')} <ArrowRight class="w-4 h-4" />
                 </span>
             </a>
 
@@ -120,10 +127,10 @@ const currentLocale = Astro.currentLocale ?? "en";
                 <div class="w-12 h-12 bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-rose-600 group-hover:text-white transition-colors">
                     <Clock class="w-6 h-6" />
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-foreground">时间换算</h3>
-                <p class="text-muted-foreground text-sm leading-relaxed mb-4">秒、分钟、小时、天、周、年等。</p>
+                <h3 class="text-xl font-bold mb-2 text-foreground">{t('hero.units.time.title')}</h3>
+                <p class="text-muted-foreground text-sm leading-relaxed mb-4">{t('hero.units.time.description')}</p>
                 <span class="text-rose-600 dark:text-rose-400 text-sm font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    进入换算 <ArrowRight class="w-4 h-4" />
+                    {t('hero.enter_conversion')} <ArrowRight class="w-4 h-4" />
                 </span>
             </a>
 
@@ -135,22 +142,22 @@ const currentLocale = Astro.currentLocale ?? "en";
                 <div class="text-primary mb-4">
                     <Zap class="w-8 h-8" />
                 </div>
-                <h4 class="font-bold text-lg mb-2 text-foreground">实时计算</h4>
-                <p class="text-muted-foreground text-sm">无需刷新页面，输入数值立得结果，毫秒级响应速度。</p>
+                <h4 class="font-bold text-lg mb-2 text-foreground">{t('hero.features.realtime.title')}</h4>
+                <p class="text-muted-foreground text-sm">{t('hero.features.realtime.description')}</p>
             </div>
             <div class="flex flex-col items-center text-center">
                 <div class="text-primary mb-4">
                     <ShieldCheck class="w-8 h-8" />
                 </div>
-                <h4 class="font-bold text-lg mb-2 text-foreground">数据精准</h4>
-                <p class="text-muted-foreground text-sm">严格遵循国际度量衡标准，汇率数据每小时同步更新。</p>
+                <h4 class="font-bold text-lg mb-2 text-foreground">{t('hero.features.precise.title')}</h4>
+                <p class="text-muted-foreground text-sm">{t('hero.features.precise.description')}</p>
             </div>
             <div class="flex flex-col items-center text-center">
                 <div class="text-primary mb-4">
                     <Smartphone class="w-8 h-8" />
                 </div>
-                <h4 class="font-bold text-lg mb-2 text-foreground">多端适配</h4>
-                <p class="text-muted-foreground text-sm">无论是在桌面浏览器还是移动端，都能获得极致体验。</p>
+                <h4 class="font-bold text-lg mb-2 text-foreground">{t('hero.features.multidevice.title')}</h4>
+                <p class="text-muted-foreground text-sm">{t('hero.features.multidevice.description')}</p>
             </div>
         </section>
     </main>

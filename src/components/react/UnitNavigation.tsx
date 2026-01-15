@@ -1,61 +1,105 @@
 "use client"
 
 import * as React from "react"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import { ArrowRight } from "lucide-react"
+import { 
+  ArrowRight, 
+  Ruler, 
+  Scale, 
+  Square, 
+  LayoutGrid, 
+  Thermometer, 
+  Clock, 
+  Zap, 
+  Database,
+  Box,
+  Droplets
+} from "lucide-react"
 
 // Automatically load all unit configuration files from src/unit
 const unitFiles = import.meta.glob('@/unit/*.json', { eager: true })
 
 // Extract available unit types from filenames
 const unitTypes = Object.keys(unitFiles).map((path) => {
-  // Extract filename without extension (e.g., "length" from "/src/unit/length.json")
   const fileName = path.split('/').pop()?.replace('.json', '')
   return fileName
 }).filter(Boolean) as string[]
+
+const iconMap: Record<string, React.ComponentType<any>> = {
+  length: Ruler,
+  weight: Scale,
+  area: Square,
+  volume: Box,
+  temperature: Thermometer,
+  time: Clock,
+  speed: Zap,
+  digital: Database,
+  liquid: Droplets,
+  // default
+  default: LayoutGrid
+}
 
 interface UnitNavigationProps {
   lang: string
   currentUnit?: string
   translations?: Record<string, string>
+  title?: string
 }
 
-export function UnitNavigation({ lang, currentUnit, translations = {} }: UnitNavigationProps) {
+export function UnitNavigation({ lang, currentUnit, translations = {}, title = "更多转换" }: UnitNavigationProps) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      {unitTypes.map((unit) => {
-        const isActive = unit === currentUnit
-        const displayName = translations[unit] || unit
-        
-        return (
-          <a 
-            key={unit} 
-            href={`/${lang}/${unit}`} 
-            className="group block outline-none"
-          >
-            <Card className={cn(
-              "h-full transition-all duration-200 hover:shadow-md border-slate-200",
-              isActive 
-                ? "bg-blue-600 border-blue-600 text-white shadow-blue-200" 
-                : "bg-white hover:border-blue-300 hover:bg-blue-50/50 text-slate-700"
-            )}>
-              <CardContent className="p-4 flex items-center justify-between gap-3">
-                <span className={cn(
-                  "font-bold text-sm sm:text-base capitalize truncate",
-                  isActive ? "text-white" : "text-slate-700 group-hover:text-blue-700"
-                )}>
-                  {displayName}
-                </span>
-                
-                {!isActive && (
-                  <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-400 group-hover:translate-x-0.5 transition-all opacity-0 group-hover:opacity-100" />
+    <Card className="border-slate-100 dark:border-border shadow-[0_8px_30px_rgba(0,0,0,0.04)] bg-background overflow-hidden py-0 gap-0">
+      <CardHeader className="flex flex-row items-center justify-between border-b border-slate-50 dark:border-border/50 space-y-0 py-3 px-4">
+        <div className="flex items-center gap-2 text-foreground">
+            <LayoutGrid className="w-4 h-4 text-primary" />
+            <CardTitle className="text-base font-bold">{title}</CardTitle>
+        </div>
+      </CardHeader>
+      <CardContent className="p-0">
+        <div className="divide-y divide-slate-50 dark:divide-border/50">
+          {unitTypes.map((unit) => {
+            const isActive = unit === currentUnit
+            const displayName = translations[unit] || unit
+            const Icon = iconMap[unit] || iconMap.default
+            
+            return (
+              <a 
+                key={unit} 
+                href={`/${lang}/${unit}`} 
+                className={cn(
+                  "flex items-center justify-between py-3 px-4 transition-colors group relative",
+                  isActive 
+                    ? "bg-blue-50/60 dark:bg-blue-900/10 cursor-default pointer-events-none" 
+                    : "hover:bg-muted/50 cursor-pointer"
                 )}
-              </CardContent>
-            </Card>
-          </a>
-        )
-      })}
-    </div>
+              >
+                 {isActive && (
+                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary" />
+                 )}
+                 <div className="flex items-center gap-3">
+                    <div className={cn(
+                        "flex items-center justify-center w-8 h-8 rounded-lg transition-colors",
+                        isActive ? "bg-blue-100 dark:bg-blue-900/30 text-primary" : "bg-muted text-muted-foreground group-hover:bg-blue-50 dark:group-hover:bg-blue-900/20 group-hover:text-primary"
+                    )}>
+                        <Icon className="w-4 h-4" />
+                    </div>
+                    <span className={cn(
+                        "text-sm font-medium transition-colors",
+                        isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
+                    )}>
+                        {displayName}
+                    </span>
+                 </div>
+                 
+                 {!isActive && (
+                    <ArrowRight className="w-4 h-4 text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+                 )}
+              </a>
+            )
+          })}
+        </div>
+      </CardContent>
+    </Card>
   )
 }

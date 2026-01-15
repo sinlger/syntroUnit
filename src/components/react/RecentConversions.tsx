@@ -18,7 +18,23 @@ interface HistoryItem {
   unitTypeName: string
 }
 
-export function RecentConversions() {
+interface RecentConversionsProps {
+  translations?: {
+    title?: string
+    noHistory?: string
+    clearHistory?: string
+    equalsHowMany?: string
+  }
+}
+
+export function RecentConversions({ translations = {} }: RecentConversionsProps) {
+  const t = {
+    title: translations.title || "最近换算",
+    noHistory: translations.noHistory || "暂无换算记录",
+    clearHistory: translations.clearHistory || "清空记录",
+    equalsHowMany: translations.equalsHowMany || "等于多少"
+  }
+
   const [history, setHistory] = React.useState<HistoryItem[]>([])
 
   const loadHistory = () => {
@@ -48,57 +64,44 @@ export function RecentConversions() {
 
   if (history.length === 0) {
     return (
-      <Card className="border-slate-100 shadow-sm bg-white">
-        <CardHeader className="pb-3 border-b border-slate-50">
-            <div className="flex items-center gap-2 text-slate-800">
-                <History className="w-4 h-4 text-blue-500" />
-                <CardTitle className="text-base font-bold">最近换算</CardTitle>
+      <Card className="border-slate-100 dark:border-border shadow-sm bg-background py-0 gap-0">
+        <CardHeader className="pb-3 pt-4 border-b border-slate-50 dark:border-border/50">
+            <div className="flex items-center gap-2 text-foreground">
+                <History className="w-4 h-4 text-primary" />
+                <CardTitle className="text-base font-bold">{t.title}</CardTitle>
             </div>
         </CardHeader>
-        <CardContent className="py-8 text-center text-slate-400 text-sm">
-            暂无换算记录
+        <CardContent className="py-8 text-center text-muted-foreground text-sm">
+            {t.noHistory}
         </CardContent>
       </Card>
     )
   }
 
   return (
-    <Card className="border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.04)] bg-white overflow-hidden">
-      <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-slate-50 space-y-0">
-        <div className="flex items-center gap-2 text-slate-800">
-            <History className="w-4 h-4 text-blue-500" />
-            <CardTitle className="text-base font-bold">最近换算</CardTitle>
+    <Card className="border-slate-100 dark:border-border shadow-[0_8px_30px_rgba(0,0,0,0.04)] bg-background overflow-hidden py-3 gap-0">
+      <CardHeader className="flex flex-row items-center justify-between border-b border-slate-50 dark:border-border/50 space-y-0 py-3 px-4">
+        <div className="flex items-center gap-2 text-foreground">
+            <History className="w-4 h-4 text-primary" />
+            <CardTitle className="text-base font-bold">{t.title}</CardTitle>
         </div>
         <Button 
             variant="ghost" 
             size="icon" 
             onClick={clearHistory}
-            className="h-8 w-8 text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors"
-            title="清空记录"
+            className="h-8 w-8 text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+            title={t.clearHistory}
         >
           <Trash2 className="h-4 w-4" />
         </Button>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="divide-y divide-slate-50">
+        <div className="divide-y divide-slate-50 dark:divide-border/50">
           {history.map((item, i) => (
-             <div key={item.timestamp + i} className="p-4 hover:bg-slate-50/50 transition-colors group">
-                <div className="flex items-center justify-between text-xs text-slate-400 mb-1.5">
-                    <span className="bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded text-[10px] font-medium">
-                        {item.unitTypeName}
-                    </span>
-                    <span>{new Date(item.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
-                </div>
-                
-                <div className="flex items-center gap-2 text-sm text-slate-700">
-                    <div className="flex-1 min-w-0 truncate font-medium">
-                        {item.fromVal} <span className="text-slate-500 text-xs font-normal">{item.fromSymbol}</span>
-                    </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-slate-300 flex-shrink-0" />
-                    <div className="flex-1 min-w-0 truncate font-medium text-right text-blue-600">
-                        {item.toVal} <span className="text-blue-400 text-xs font-normal">{item.toSymbol}</span>
-                    </div>
-                </div>
+             <div key={item.timestamp + i} className="py-3 px-4 hover:bg-muted/50 transition-colors cursor-pointer">
+                <p className="text-sm text-foreground font-medium">
+                    {item.fromVal}{item.fromSymbol} {t.equalsHowMany} {item.toSymbol}？
+                </p>
              </div>
           ))}
         </div>

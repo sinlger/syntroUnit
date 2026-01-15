@@ -2,28 +2,32 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Breadcrumbs } from "@/components/react/Breadcrumbs";
 import { UnitConverter } from "@/components/react/UnitConverter";
+import { UnitNavigation } from "@/components/react/UnitNavigation";
 import { RecentConversions } from "@/components/react/RecentConversions";
 import { languages, ui } from "@/i18n/ui";
+import { useTranslations } from "@/i18n/utils";
 
 export async function getStaticPaths() {
-  const unitFiles = import.meta.glob('../../../unit/*.json');
-  const units = Object.keys(unitFiles).map(path => {
-    const fileName = path.split('/').pop();
-    return fileName.replace('.json', '');
+  const unitFiles = import.meta.glob("../../../unit/*.json");
+  const units = Object.keys(unitFiles).map((path) => {
+    const fileName = path.split("/").pop();
+    return fileName.replace(".json", "");
   });
 
   return Object.keys(languages).flatMap((lang) =>
     units.map((unit) => ({
       params: { lang, unit },
-    }))
+    })),
   );
 }
 
 const { lang, unit } = Astro.params;
 
 // Load data using eager glob to ensure Vite handles it correctly
-const unitFiles = import.meta.glob('../../../unit/*.json', { eager: true });
-const langFiles = import.meta.glob('../../../i18n/lang/*.json', { eager: true });
+const unitFiles = import.meta.glob("../../../unit/*.json", { eager: true });
+const langFiles = import.meta.glob("../../../i18n/lang/*.json", {
+  eager: true,
+});
 
 const unitData = unitFiles[`../../../unit/${unit}.json`]?.default || {};
 const t = langFiles[`../../../i18n/lang/${lang}.json`]?.default || {};
@@ -42,29 +46,84 @@ if (t[unit]) {
   }
 }
 
-const unitTitle = t[unit]?.title || (unit.charAt(0).toUpperCase() + unit.slice(1));
+const unitTitle =
+  t[unit]?.title || unit.charAt(0).toUpperCase() + unit.slice(1);
+
+const navTranslations = {};
+Object.keys(t).forEach(k => {
+  if (t[k]?.title) {
+    navTranslations[k] = t[k].title;
+  }
+});
+
+const t_ui = useTranslations(lang as keyof typeof ui);
+
+const recentTranslations = {
+  title: t_ui('components.recent_conversions.title'),
+  noHistory: t_ui('components.recent_conversions.no_history'),
+  clearHistory: t_ui('components.recent_conversions.clear_history'),
+  equalsHowMany: t_ui('components.recent_conversions.equals_how_many'),
+};
+
+const unitConverterTranslations = {
+  description: t_ui('components.unit_converter.description'),
+  inputPlaceholder: t_ui('components.unit_converter.input_placeholder'),
+  inputLabel: t_ui('components.unit_converter.input_label'),
+  inputTitle: t_ui('components.unit_converter.input_title'),
+  selectSourceLabel: t_ui('components.unit_converter.select_source_label'),
+  selectSourceTitle: t_ui('components.unit_converter.select_source_title'),
+  swapButtonLabel: t_ui('components.unit_converter.swap_button_label'),
+  swapButtonTitle: t_ui('components.unit_converter.swap_button_title'),
+  selectTargetLabel: t_ui('components.unit_converter.select_target_label'),
+  selectTargetTitle: t_ui('components.unit_converter.select_target_title'),
+  convertButtonLabel: t_ui('components.unit_converter.convert_button_label'),
+  convertButtonTitle: t_ui('components.unit_converter.convert_button_title'),
+  convertButtonText: t_ui('components.unit_converter.convert_button_text'),
+  resultLabel: t_ui('components.unit_converter.result_label'),
+  processTitle: t_ui('components.unit_converter.process_title'),
+  formulaTitle: t_ui('components.unit_converter.formula_title'),
+  formulaStep1Desc: t_ui('components.unit_converter.formula_step1_desc'),
+  formulaStep2Desc: t_ui('components.unit_converter.formula_step2_desc'),
+  step1Title: t_ui('components.unit_converter.step1_title'),
+  step1Formula: t_ui('components.unit_converter.step1_formula'),
+  step1Calc: t_ui('components.unit_converter.step1_calc'),
+  step2Title: t_ui('components.unit_converter.step2_title'),
+  step2Formula: t_ui('components.unit_converter.step2_formula'),
+  step2Calc: t_ui('components.unit_converter.step2_calc'),
+  resultText: t_ui('components.unit_converter.result_text'),
+  baseUnitDefault: t_ui('components.unit_converter.base_unit_default'),
+};
 ---
 
 <BaseLayout>
-    <div class="container mx-auto max-w-7xl px-4 py-8">
-        <Breadcrumbs items={[
-            { label: "Home", href: `/${lang}` },
-            { label: unitTitle }
-        ]} />        
-        
-        <div class="grid gap-8 lg:grid-cols-12 items-start mt-6">
-            <div class="lg:col-span-8">
-                <UnitConverter 
-                    client:load 
-                    data={unitData} 
-                    unitType={unit} 
-                    translations={unitTranslations}
-                    title={unitTitle}
-                />
-            </div>
-            <div class="lg:col-span-4 space-y-6">
-                <RecentConversions client:load />
-            </div>
+  <div class="container mx-auto max-w-6xl px-4 py-8">
+    <Breadcrumbs
+      items={[{ label: "Home", href: `/${lang}` }, { label: unitTitle }]}
+    />
+
+    <div class="grid gap-8 lg:grid-cols-12 items-start mt-6">
+      <div class="lg:col-span-9">
+        <UnitConverter
+          client:load
+          data={unitData}
+          unitType={unit}
+          translations={unitTranslations}
+          title={unitTitle}
+          uiTranslations={unitConverterTranslations}
+        />
+      </div>
+      <div class="lg:col-span-3 space-y-5">
+        <RecentConversions client:load translations={recentTranslations} />
+        <div class="mt-5">
+          <UnitNavigation
+            client:load
+            lang={lang}
+            currentUnit={unit}
+            translations={navTranslations}
+            title={t_ui('components.unit_navigation.title')}
+          />
         </div>
+      </div>
     </div>
+  </div>
 </BaseLayout>

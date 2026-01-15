@@ -8,9 +8,11 @@ import { cn } from "@/lib/utils"
 
 interface HistoryItem {
   fromVal: string
+  fromUnitId?: string
   fromUnitName: string
   fromSymbol: string
   toVal: string
+  toUnitId?: string
   toUnitName: string
   toSymbol: string
   timestamp: number
@@ -25,9 +27,10 @@ interface RecentConversionsProps {
     clearHistory?: string
     equalsHowMany?: string
   }
+  unitTranslations?: Record<string, string>
 }
 
-export function RecentConversions({ translations = {} }: RecentConversionsProps) {
+export function RecentConversions({ translations = {}, unitTranslations = {} }: RecentConversionsProps) {
   const t = {
     title: translations.title || "最近换算",
     noHistory: translations.noHistory || "暂无换算记录",
@@ -97,13 +100,18 @@ export function RecentConversions({ translations = {} }: RecentConversionsProps)
       </CardHeader>
       <CardContent className="p-0">
         <div className="divide-y divide-slate-50 dark:divide-border/50">
-          {history.map((item, i) => (
+          {history.map((item, i) => {
+             const fromName = (item.fromUnitId && unitTranslations[item.fromUnitId]) || item.fromUnitName || item.fromSymbol
+             const toName = (item.toUnitId && unitTranslations[item.toUnitId]) || item.toUnitName || item.toSymbol
+             
+             return (
              <div key={item.timestamp + i} className="py-3 px-4 hover:bg-muted/50 transition-colors cursor-pointer">
                 <p className="text-sm text-foreground font-medium">
-                    {item.fromVal}{item.fromSymbol} {t.equalsHowMany} {item.toSymbol}？
+                    {item.fromVal} {fromName} {t.equalsHowMany} {toName}？
                 </p>
              </div>
-          ))}
+             )
+          })}
         </div>
       </CardContent>
     </Card>

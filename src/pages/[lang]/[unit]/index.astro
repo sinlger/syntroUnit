@@ -50,9 +50,16 @@ const unitTitle =
   t[unit]?.title || unit.charAt(0).toUpperCase() + unit.slice(1);
 
 const navTranslations = {};
+const allUnitTranslations = {};
 Object.keys(t).forEach(k => {
   if (t[k]?.title) {
     navTranslations[k] = t[k].title;
+  }
+  if (t[k]?.units) {
+    Object.assign(allUnitTranslations, t[k].units);
+  }
+  if (t[k]?.groups) {
+    Object.assign(allUnitTranslations, t[k].groups);
   }
 });
 
@@ -113,7 +120,7 @@ const unitConverterTranslations = {
         />
       </div>
       <div class="lg:col-span-3 space-y-5">
-        <RecentConversions client:load translations={recentTranslations} />
+        <RecentConversions client:load translations={recentTranslations} unitTranslations={allUnitTranslations} />
         <div class="mt-5">
           <UnitNavigation
             client:load

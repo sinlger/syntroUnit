@@ -197,9 +197,11 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
     if (hasConverted && calculation) {
       const historyItem = {
         fromVal: amount,
+        fromUnitId: calculation.sourceUnit.id,
         fromUnitName: getName(calculation.sourceUnit),
         fromSymbol: calculation.sourceUnit.symbol,
         toVal: calculation.result,
+        toUnitId: calculation.targetUnit.id,
         toUnitName: getName(calculation.targetUnit),
         toSymbol: calculation.targetUnit.symbol,
         timestamp: Date.now(),

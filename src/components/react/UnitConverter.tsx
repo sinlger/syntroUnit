@@ -72,9 +72,11 @@ interface UnitConverterProps {
     resultText?: string
     baseUnitDefault?: string
   }
+  defaultSourceUnit?: string
+  defaultTargetUnit?: string
 }
 
-export function UnitConverter({ data, unitType, translations = {}, title, uiTranslations = {} }: UnitConverterProps) {
+export function UnitConverter({ data, unitType, translations = {}, title, uiTranslations = {}, defaultSourceUnit, defaultTargetUnit }: UnitConverterProps) {
   const t = {
     description: uiTranslations.description || "支持多种常用{typeName}双向转换",
     inputPlaceholder: uiTranslations.inputPlaceholder || "请输入数值",
@@ -108,17 +110,23 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
   const allUnits = React.useMemo(() => groups.flatMap((g) => g.units), [groups])
 
   const [amount, setAmount] = React.useState<string>("")
-  const [fromUnitId, setFromUnitId] = React.useState<string>("")
-  const [toUnitId, setToUnitId] = React.useState<string>("")
+  const [fromUnitId, setFromUnitId] = React.useState<string>(defaultSourceUnit || "")
+  const [toUnitId, setToUnitId] = React.useState<string>(defaultTargetUnit || "")
   const [showProcess, setShowProcess] = React.useState(true)
   const [hasConverted, setHasConverted] = React.useState(false)
 
-  // Initialize defaults
+  // Update state when defaults change (e.g. navigation)
+  React.useEffect(() => {
+    if (defaultSourceUnit) setFromUnitId(defaultSourceUnit)
+    if (defaultTargetUnit) setToUnitId(defaultTargetUnit)
+  }, [defaultSourceUnit, defaultTargetUnit])
+
+  // Initialize defaults if not set
   React.useEffect(() => {
     if (allUnits.length > 0) {
       if (!fromUnitId) setFromUnitId(allUnits[0].id)
       if (!toUnitId) {
-        const target = allUnits.find((u) => u.id !== allUnits[0].id) || allUnits[0]
+        const target = allUnits.find((u) => u.id !== (fromUnitId || allUnits[0].id)) || allUnits[0]
         setToUnitId(target.id)
       }
     }

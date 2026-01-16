@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Button } from "@/components/ui/button";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { Home, ArrowLeft, AlertCircle } from "lucide-astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const title = "404 - Page Not Found";
+---
+
+<BaseLayout title={title}>
+  <div class="flex flex-col items-center pt-32 pb-12 w-full px-4 text-center gap-8">
+    
+    <div class="flex flex-col items-center gap-2">
+      <div class="rounded-full bg-muted p-4 mb-4">
+        <AlertCircle class="w-12 h-12 text-muted-foreground" />
+      </div>
+      <h1 class="text-7xl font-bold tracking-tighter text-primary">
+        404
+      </h1>
+      <h2 class="text-2xl font-semibold tracking-tight text-foreground">
+        {t('pages.404.title')}
+      </h2>
+      <p class="text-muted-foreground text-lg max-w-[500px] mt-2">
+        {t('pages.404.description')}
+      </p>
+    </div>
+
+    <div class="flex flex-row items-center gap-4 mt-4">
+      <Button 
+        variant="outline" 
+        size="lg" 
+        className="gap-2 min-w-[140px]"
+        onclick="history.back()"
+      >
+        <ArrowLeft class="w-4 h-4" />
+        {t('pages.404.go_back')}
+      </Button>
+
+      <a href={`/${lang}`}>
+        <Button size="lg" className="gap-2 min-w-[140px]">
+          <Home class="w-4 h-4" />
+          {t('pages.404.back_to_home')}
+        </Button>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

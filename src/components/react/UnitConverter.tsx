@@ -21,20 +21,12 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { ArrowRightLeft, Calculator, Info } from "lucide-react"
-import Big from "big.js"
+import { CalculationProcess } from "./CalculationProcess"
+import { CalculationResult as CalculationResultComponent } from "./CalculationResult"
+import { getConverter } from "@/lib/converter"
+import type { Unit, UnitGroup, CalculationResult } from "@/lib/converter"
 
-export interface Unit {
-  id: string
-  symbol: string
-  ratio: number
-  name?: string
-}
-
-export interface UnitGroup {
-  group_id: string
-  name?: string
-  units: Unit[]
-}
+export type { Unit, UnitGroup, CalculationResult }
 
 interface UnitConverterProps {
   data: {
@@ -155,34 +147,14 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
     const targetUnit = allUnits.find((u) => u.id === toUnitId)
     if (!sourceUnit || !targetUnit) return null
 
-    try {
-      const val = new Big(amount)
-      const sRatio = new Big(sourceUnit.ratio)
-      const tRatio = new Big(targetUnit.ratio)
-      
-      if (tRatio.eq(0)) return null
-
-      // Base value (e.g. meters) = Value * SourceRatio
-      const baseValue = val.times(sRatio)
-      
-      // Target value = BaseValue / TargetRatio
-      const targetValue = baseValue.div(tRatio)
-      
-      const baseUnit = allUnits.find(u => u.ratio === 1)
-
-      return {
-        sourceUnit,
-        targetUnit,
-        baseValue,
-        result: targetValue.toPrecision(10).replace(/\.?0+$/, ""),
-        sRatio,
-        tRatio,
-        baseUnit
-      }
-    } catch (e) {
-      return null
-    }
-  }, [amount, fromUnitId, toUnitId, allUnits])
+    const converter = getConverter(unitType)
+    return converter.convert({
+      amount,
+      sourceUnit,
+      targetUnit,
+      allUnits
+    })
+  }, [amount, fromUnitId, toUnitId, allUnits, unitType])
 
   const fromUnit = allUnits.find((u) => u.id === fromUnitId)
   const toUnit = allUnits.find((u) => u.id === toUnitId)
@@ -316,94 +288,23 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
           {/* Result Section */}
           {hasConverted && calculation && (
             <div className="animate-in fade-in slide-in-from-top-4 duration-300 pt-2">
-              <div className="relative overflow-hidden rounded-2xl transition-all duration-300 bg-blue-600 dark:bg-blue-700 shadow-lg shadow-blue-200 dark:shadow-none ring-4 ring-blue-50 dark:ring-blue-900/20">
-                <div className="px-6 py-5 min-h-[80px] flex flex-col items-center justify-center text-center">
-                    <div className="text-blue-100 dark:text-blue-200 text-xs font-medium mb-1 uppercase tracking-wider">{t.resultLabel}</div>
-                    <div className="text-white text-3xl font-bold break-all leading-tight">
-                      {calculation.result} <span className="text-lg font-normal opacity-80">{toUnit?.symbol}</span>
-                    </div>
-                    <div className="mt-2 text-blue-100/80 text-sm">
-                      {amount} {fromUnit?.symbol} = {calculation.result} {toUnit?.symbol}
-                    </div>
-                </div>
-              </div>
+              <CalculationResultComponent 
+                t={t}
+                calculation={calculation}
+                amount={amount}
+                fromUnit={fromUnit}
+                toUnit={toUnit}
+              />
 
               {/* Detailed Process Toggle */}
               <div className="mt-4">
-
-                {showProcess && (
-                  <div className="bg-blue-50/50 dark:bg-blue-900/10 rounded-xl p-6 border border-blue-100/50 dark:border-blue-900/20 space-y-6 text-sm animate-in fade-in slide-in-from-top-2 duration-200 mt-2">
-                    {/* Header */}
-                    <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-base">
-                      <Calculator className="w-5 h-5" />
-                      {t.processTitle}
-                    </div>
-
-                    {/* Core Formula */}
-                    <div className="space-y-3">
-                      <h4 className="font-semibold text-blue-600 dark:text-blue-400">
-                        {t.formulaTitle.replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)}
-                      </h4>
-                      <div className="space-y-2 pl-4 text-muted-foreground leading-relaxed">
-                        <p dangerouslySetInnerHTML={{ __html: t.formulaStep1Desc.replace(/\{baseUnit\}/g, getName(calculation.baseUnit) || t.baseUnitDefault) }} />
-                        <p dangerouslySetInnerHTML={{ __html: t.formulaStep2Desc.replace(/\{baseUnit\}/g, getName(calculation.baseUnit) || t.baseUnitDefault) }} />
-                      </div>
-                    </div>
-
-                    <div className="space-y-6 border-t border-blue-100 dark:border-blue-900/20 pt-6">
-                      {/* Step 1 */}
-                      <div className="space-y-2">
-                        <div className="text-blue-500 dark:text-blue-400 font-bold">
-                          {t.step1Title
-                            .replace('{sourceUnit}', getName(calculation.sourceUnit))
-                            .replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)}
-                        </div>
-                        <div className="pl-4 space-y-2 text-muted-foreground">
-                          <p>{t.step1Formula
-                            .replace('{sourceUnit}', getName(calculation.sourceUnit))
-                            .replace('{ratio}', calculation.sRatio.toString())
-                            .replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)}</p>
-                          <p>{t.step1Calc
-                            .replace('{value}', amount)
-                            .replace('{ratio}', calculation.sRatio.toString())
-                            .replace('{result}', calculation.baseValue.toString())
-                            .replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)}</p>
-                        </div>
-                      </div>
-
-                      {/* Step 2 */}
-                      <div className="space-y-2">
-                        <div className="text-blue-500 dark:text-blue-400 font-bold">
-                          {t.step2Title
-                            .replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)
-                            .replace('{targetUnit}', getName(calculation.targetUnit))}
-                        </div>
-                        <div className="pl-4 space-y-2 text-muted-foreground">
-                          <p>{t.step2Formula
-                            .replace('{targetUnit}', getName(calculation.targetUnit))
-                            .replace('{ratio}', calculation.tRatio.toString())
-                            .replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)}</p>
-                          <p>{t.step2Calc
-                            .replace('{value}', calculation.baseValue.toString())
-                            .replace('{ratio}', calculation.tRatio.toString())
-                            .replace('{result}', calculation.result)
-                            .replace('{targetUnit}', getName(calculation.targetUnit))}</p>
-                        </div>
-                      </div>
-
-                      {/* Result */}
-                      <div className="pt-2">
-                         <div className="text-blue-600 dark:text-blue-400 font-bold text-base">
-                           {t.resultText
-                             .replace('{sourceValue}', amount)
-                             .replace('{sourceUnit}', getName(calculation.sourceUnit))
-                             .replace('{resultValue}', calculation.result)
-                             .replace('{targetUnit}', getName(calculation.targetUnit))}
-                         </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                <CalculationProcess 
+                  t={t}
+                  calculation={calculation}
+                  amount={amount}
+                  getName={getName}
+                  showProcess={showProcess}
+                />
               </div>
             </div>
           )}

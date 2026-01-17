@@ -1,0 +1,27 @@
+[
+    {
+        "group_id": "common_temperature",
+        "units": [
+            {
+                "id": "celsius",
+                "symbol": "°C",
+                "ratio": 1
+            },
+            {
+                "id": "fahrenheit",
+                "symbol": "°F",
+                "ratio": 0.5555555556
+            },
+            {
+                "id": "kelvin",
+                "symbol": "K",
+                "ratio": 1
+            },
+            {
+                "id": "rankine",
+                "symbol": "°R",
+                "ratio": 0.5555555556
+            }
+        ]
+    }
+]

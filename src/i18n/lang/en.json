@@ -87,5 +87,17 @@
             "c_mu": "Mu",
             "c_qing": "Qing"
         }
+    },
+    "temperature": {
+        "title": "Temperature Units",
+        "groups": {
+            "common_temperature": "Common Temperature"
+        },
+        "units": {
+            "celsius": "Celsius",
+            "fahrenheit": "Fahrenheit",
+            "kelvin": "Kelvin",
+            "rankine": "Rankine"
+        }
     }
 }

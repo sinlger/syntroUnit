@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/react/Breadcrumbs";
 import { UnitConverter } from "@/components/react/UnitConverter";
 import { UnitNavigation } from "@/components/react/UnitNavigation";
 import { RecentConversions } from "@/components/react/RecentConversions";
+import { RandomUnitConversions } from "@/components/react/RandomUnitConversions";
 import { languages, ui } from "@/i18n/ui";
 import { useTranslations } from "@/i18n/utils";
 
@@ -118,6 +119,18 @@ const unitConverterTranslations = {
           title={unitTitle}
           uiTranslations={unitConverterTranslations}
         />
+        
+        <div class="mt-5">
+          <RandomUnitConversions
+            client:load
+            data={unitData}
+            unitType={unit}
+            lang={lang}
+            translations={unitTranslations}
+            title={t_ui('components.random_conversions.title')}
+            conversionFormat={t_ui('components.random_conversions.link_format')}
+          />
+        </div>
       </div>
       <div class="lg:col-span-3 space-y-5">
         <RecentConversions client:load translations={recentTranslations} unitTranslations={allUnitTranslations} />

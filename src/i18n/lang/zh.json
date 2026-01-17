@@ -87,5 +87,17 @@
             "c_mu": "市亩",
             "c_qing": "市顷"
         }
+    },
+    "temperature": {
+        "title": "温度单位",
+        "groups": {
+            "common_temperature": "常用温度单位"
+        },
+        "units": {
+            "celsius": "摄氏度",
+            "fahrenheit": "华氏度",
+            "kelvin": "开尔文",
+            "rankine": "兰氏度"
+        }
     }
 }

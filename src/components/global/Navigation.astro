@@ -4,6 +4,7 @@ import {
   getLangFromUrl,
   useTranslations
 } from "../../i18n/utils";
+import { defaultLang } from "../../i18n/ui";
 import { Sun, Moon } from "lucide-astro";
 import { LanguageSwitcher } from "../react/LanguageSwitcher";
 
@@ -31,7 +32,7 @@ const t = useTranslations(lang);
         </span>
       </div>
       <div class="hidden md:flex space-x-8 text-sm font-medium text-muted-foreground">
-        <a href="/" class="hover:text-primary transition">{t('nav.home')}</a>
+        <a href={`/${lang === defaultLang ? '' : lang}`} class="hover:text-primary transition">{t('nav.home')}</a>
         <a href="#" class="hover:text-primary transition">{t('nav.common')}</a>
         <a href="#" class="hover:text-primary transition">{t('nav.favorites')}</a>
         <a href="#" class="hover:text-primary transition">{t('nav.about')}</a>

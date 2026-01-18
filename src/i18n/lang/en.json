@@ -99,5 +99,84 @@
             "kelvin": "Kelvin",
             "rankine": "Rankine"
         }
+    },
+    "volume": {
+        "title": "Volume Units",
+        "groups": {
+            "metric_volume": "Metric (SI)",
+            "imperial_volume": "Imperial / US Liquid",
+            "chinese_volume": "Chinese Units",
+            "regional_traditional_volume": "Regional Traditional"
+        },
+        "units": {
+            "mm3": "Cubic Millimeter",
+            "cm3": "Cubic Centimeter",
+            "m3": "Cubic Meter",
+            "km3": "Cubic Kilometer",
+            "mL": "Milliliter",
+            "L": "Liter",
+            "in3": "Cubic Inch",
+            "ft3": "Cubic Foot",
+            "yd3": "Cubic Yard",
+            "fl_oz_us": "US Fluid Ounce",
+            "gal_us": "US Gallon",
+            "qt_us": "US Quart",
+            "pt_us": "US Pint",
+            "fl_oz_uk": "UK Fluid Ounce",
+            "gal_uk": "UK Gallon",
+            "c_ge": "Ge",
+            "c_sheng": "Sheng",
+            "c_dou": "Dou",
+            "c_dan": "Dan",
+            "de_scheffel": "Scheffel (DE)",
+            "fr_muid": "Muid (FR)",
+            "ru_vedro": "Vedro (RU)",
+            "th_sao": "Sao (TH)",
+            "eg_ardeb": "Ardeb (EG)",
+            "br_alqueire": "Alqueire (BR)"
+        }
+    },
+    "storage": {
+        "title": "Digital Storage",
+        "groups": {
+            "decimal": "Decimal Units (SI)",
+            "binary": "Binary Units (IEC)"
+        },
+        "units": {
+            "b": "Bit",
+            "B": "Byte",
+            "KB": "Kilobyte (KB)",
+            "MB": "Megabyte (MB)",
+            "GB": "Gigabyte (GB)",
+            "TB": "Terabyte (TB)",
+            "PB": "Petabyte (PB)",
+            "KiB": "Kibibyte (KiB)",
+            "MiB": "Mebibyte (MiB)",
+            "GiB": "Gibibyte (GiB)",
+            "TiB": "Tebibyte (TiB)",
+            "PiB": "Pebibyte (PiB)"
+        }
+    },
+    "time": {
+        "title": "Time & Date Units",
+        "groups": {
+            "precise_time": "Precise Time (SI)",
+            "common_time": "Common Time Units",
+            "calendar_time": "Calendar Units"
+        },
+        "units": {
+            "ns": "Nanosecond",
+            "us": "Microsecond",
+            "ms": "Millisecond",
+            "s": "Second",
+            "min": "Minute",
+            "h": "Hour",
+            "d": "Day",
+            "wk": "Week",
+            "mo": "Month (Avg.)",
+            "yr": "Year (Calendar)",
+            "dec": "Decade",
+            "cen": "Century"
+        }
     }
 }

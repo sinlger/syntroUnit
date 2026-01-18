@@ -96,6 +96,9 @@ export const temperatureConverter: ConverterStrategy = {
       } else if (sId.includes('kelvin') || sId === 'k') {
         // C = K - 273.15
         celsiusVal = val.minus(273.15)
+      } else if (sId.includes('rankine') || sId === 'r') {
+        // C = (R - 491.67) / 1.8
+        celsiusVal = val.minus(491.67).div(1.8)
       } else {
         // Fallback to linear if unknown (or maybe Rankine etc. if needed later)
         celsiusVal = val.times(sourceUnit.ratio)
@@ -112,6 +115,9 @@ export const temperatureConverter: ConverterStrategy = {
       } else if (tId.includes('kelvin') || tId === 'k') {
         // K = C + 273.15
         resultVal = celsiusVal.plus(273.15)
+      } else if (tId.includes('rankine') || tId === 'r') {
+        // R = (C + 273.15) * 1.8
+        resultVal = celsiusVal.plus(273.15).times(1.8)
       } else {
         // Fallback
         resultVal = celsiusVal.div(targetUnit.ratio || 1)

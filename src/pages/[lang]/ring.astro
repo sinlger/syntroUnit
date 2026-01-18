@@ -1,0 +1,66 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { languages } from "@/i18n/ui";
+import { useTranslations } from "@/i18n/utils";
+import ringData from "@/unit/ring.json";
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+
+const headers = [
+  { key: 'dia', label: t('ring.table.diameter') },
+  { key: 'cir', label: t('ring.table.circumference') },
+  { key: 'us', label: t('ring.table.us') },
+  { key: 'uk', label: t('ring.table.uk') },
+  { key: 'cn', label: t('ring.table.cn') },
+  { key: 'eu', label: t('ring.table.eu') },
+];
+---
+<BaseLayout>
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-foreground mb-4">{t('hero.units.ring.title')}</h1>
+        <p class="text-lg text-muted-foreground">{t('hero.units.ring.description')}</p>
+      </div>
+      
+      <div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="text-xs text-muted-foreground uppercase bg-muted/50 border-b border-border">
+              <tr>
+                {headers.map(header => (
+                  <th scope="col" class="px-6 py-4 font-medium whitespace-nowrap">
+                    {header.label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              {ringData.map((row) => (
+                <tr class="bg-card hover:bg-muted/50 transition-colors">
+                  <td class="px-6 py-4 font-medium text-foreground">{row.dia}</td>
+                  <td class="px-6 py-4 text-muted-foreground">{row.cir}</td>
+                  <td class="px-6 py-4 font-semibold text-primary">{row.us}</td>
+                  <td class="px-6 py-4 text-muted-foreground">{row.uk}</td>
+                  <td class="px-6 py-4 text-muted-foreground">{row.cn}</td>
+                  <td class="px-6 py-4 text-muted-foreground">{row.eu}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="mt-8 text-center text-sm text-muted-foreground">
+        <p>{t('components.unit_converter.description').replace('{typeName}', t('hero.units.ring.title'))}</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

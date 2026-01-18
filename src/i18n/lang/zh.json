@@ -99,5 +99,101 @@
             "kelvin": "开尔文",
             "rankine": "兰氏度"
         }
+    },
+    "volume": {
+        "title": "体积单位",
+        "groups": {
+            "metric_volume": "公制体积 (SI)",
+            "imperial_volume": "英美制体积 (US/UK)",
+            "chinese_volume": "中国市制体积",
+            "regional_traditional_volume": "全球区域传统体积"
+        },
+        "units": {
+            "mm3": "立方毫米",
+            "cm3": "立方厘米",
+            "dm3": "立方分米",
+            "m3": "立方米",
+            "km3": "立方千米",
+            "mL": "毫升",
+            "L": "升",
+            "in3": "立方英寸",
+            "ft3": "立方英尺",
+            "yd3": "立方码",
+            "fl_oz_us": "美制液盎司",
+            "gal_us": "美制加仑",
+            "qt_us": "美制夸脱",
+            "pt_us": "美制品脱",
+            "cup_us": "美制量杯",
+            "tbsp_us": "美制汤勺",
+            "tsp_us": "美制茶勺",
+            "fl_oz_uk": "英制液盎司",
+            "gal_uk": "英制加仑",
+            "qt_uk": "英制夸脱",
+            "pt_uk": "英制品脱",
+            "c_ge": "市合",
+            "c_sheng": "市升",
+            "c_dou": "市斗",
+            "c_dan": "市石",
+            "de_scheffel": "谢菲尔 (Scheffel，德)",
+            "fr_muid": "米伊 (Muid，法)",
+            "fr_pinte": "法制品脱 (Pinte，法)",
+            "ru_vedro": "维德罗 (Vedro，俄)",
+            "it_barile": "巴利莱 (Barile，意)",
+            "in_khok": "霍克 (Khok，印)",
+            "th_sao": "邵 (Sao，泰)",
+            "id_gelas": "格拉丝 (Gelas，印尼)",
+            "sa_saah": "萨阿 (Sa'ah，沙特)",
+            "eg_ardeb": "阿尔代布 (Ardeb，埃)",
+            "mx_fanega": "法内加 (Fanega，墨)",
+            "br_alqueire": "阿尔克伊尔 (Alqueire，巴)",
+            "za_bag": "袋 (Bag，南非)"
+        }
+    },
+    "storage": {
+        "title": "数字存储",
+        "groups": {
+            "decimal": "十进制单位 (SI/硬盘厂商标准)",
+            "binary": "二进制单位 (IEC/操作系统标准)"
+        },
+        "units": {
+            "b": "比特 (Bit)",
+            "B": "字节 (Byte)",
+            "KB": "千字节 (KB)",
+            "MB": "兆字节 (MB)",
+            "GB": "吉字节 (GB)",
+            "TB": "太字节 (TB)",
+            "PB": "拍字节 (PB)",
+            "EB": "艾字节 (EB)",
+            "ZB": "泽字节 (ZB)",
+            "YB": "尧字节 (YB)",
+            "KiB": "二进制千字节 (KiB)",
+            "MiB": "二进制兆字节 (MiB)",
+            "GiB": "二进制吉字节 (GiB)",
+            "TiB": "二进制太字节 (TiB)",
+            "PiB": "二进制拍字节 (PiB)",
+            "EiB": "二进制艾字节 (EiB)"
+        }
+    },
+    "time": {
+        "title": "时间日期单位",
+        "groups": {
+            "precise_time": "高精度时间",
+            "common_time": "常规时间单位",
+            "calendar_time": "历法单位"
+        },
+        "units": {
+            "ns": "纳秒",
+            "us": "微秒",
+            "ms": "毫秒",
+            "s": "秒",
+            "min": "分钟",
+            "h": "小时",
+            "d": "天/日",
+            "wk": "周/星期",
+            "mo": "月 (平均)",
+            "yr": "年",
+            "dec": "十年",
+            "cen": "世纪"
+        }
     }
 }

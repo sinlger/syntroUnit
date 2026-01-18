@@ -1,0 +1,31 @@
+[
+  {
+    "group_id": "metric_volume",
+    "units": [
+      {"id": "mm3", "symbol": "mm³", "ratio": 1e-9},
+      {"id": "cm3", "symbol": "cm³", "ratio": 1e-6},
+      {"id": "m3", "symbol": "m³", "ratio": 1},
+      {"id": "mL", "symbol": "mL", "ratio": 1e-6},
+      {"id": "L", "symbol": "L", "ratio": 0.001}
+    ]
+  },
+  {
+    "group_id": "imperial_volume",
+    "units": [
+      {"id": "in3", "symbol": "in³", "ratio": 0.000016387064},
+      {"id": "ft3", "symbol": "ft³", "ratio": 0.028316846592},
+      {"id": "fl_oz_us", "symbol": "fl oz(US)", "ratio": 0.0000295735},
+      {"id": "gal_us", "symbol": "gal(US)", "ratio": 0.003785411784},
+      {"id": "gal_uk", "symbol": "gal(UK)", "ratio": 0.00454609}
+    ]
+  },
+  {
+    "group_id": "regional_traditional_volume",
+    "units": [
+      {"id": "ru_vedro", "symbol": "vedro", "ratio": 0.012299},
+      {"id": "th_sao", "symbol": "sao", "ratio": 0.02},
+      {"id": "eg_ardeb", "symbol": "ardeb", "ratio": 0.198},
+      {"id": "br_alqueire", "symbol": "alqueire", "ratio": 0.03627}
+    ]
+  }
+]

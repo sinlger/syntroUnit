@@ -1,0 +1,29 @@
+[
+  {
+    "group_id": "precise_time",
+    "units": [
+      {"id": "ns", "symbol": "ns", "ratio": 1e-9},
+      {"id": "us", "symbol": "μs", "ratio": 1e-6},
+      {"id": "ms", "symbol": "ms", "ratio": 0.001},
+      {"id": "s", "symbol": "s", "ratio": 1}
+    ]
+  },
+  {
+    "group_id": "common_time",
+    "units": [
+      {"id": "min", "symbol": "min", "ratio": 60},
+      {"id": "h", "symbol": "h", "ratio": 3600},
+      {"id": "d", "symbol": "d", "ratio": 86400},
+      {"id": "wk", "symbol": "wk", "ratio": 604800}
+    ]
+  },
+  {
+    "group_id": "calendar_time",
+    "units": [
+      {"id": "mo", "symbol": "mo", "ratio": 2629746},
+      {"id": "yr", "symbol": "yr", "ratio": 31556952},
+      {"id": "dec", "symbol": "dec", "ratio": 315569520},
+      {"id": "cen", "symbol": "cen", "ratio": 3155695200}
+    ]
+  }
+]

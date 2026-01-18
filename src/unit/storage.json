@@ -1,0 +1,22 @@
+[
+  {
+    "group_id": "decimal",
+    "units": [
+      {"id": "b", "symbol": "b", "ratio": 0.125},
+      {"id": "B", "symbol": "B", "ratio": 1},
+      {"id": "KB", "symbol": "KB", "ratio": 1000},
+      {"id": "MB", "symbol": "MB", "ratio": 1000000},
+      {"id": "GB", "symbol": "GB", "ratio": 1000000000},
+      {"id": "TB", "symbol": "TB", "ratio": 1000000000000}
+    ]
+  },
+  {
+    "group_id": "binary",
+    "units": [
+      {"id": "KiB", "symbol": "KiB", "ratio": 1024},
+      {"id": "MiB", "symbol": "MiB", "ratio": 1048576},
+      {"id": "GiB", "symbol": "GiB", "ratio": 1073741824},
+      {"id": "TiB", "symbol": "TiB", "ratio": 1099511627776}
+    ]
+  }
+]

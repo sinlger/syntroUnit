@@ -2,9 +2,7 @@
 
 import * as React from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Trash2, History, ArrowRight } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { History } from "lucide-react"
 
 interface HistoryItem {
   fromVal: string
@@ -28,23 +26,39 @@ interface RecentConversionsProps {
     equalsHowMany?: string
   }
   unitTranslations?: Record<string, string>
+  lang?: string
+  unitType?: string
 }
 
-export function RecentConversions({ translations = {}, unitTranslations = {} }: RecentConversionsProps) {
+export function RecentConversions({ translations = {}, unitTranslations = {}, lang = 'en', unitType }: RecentConversionsProps) {
   const t = {
     title: translations.title || "最近换算",
     noHistory: translations.noHistory || "暂无换算记录",
-    clearHistory: translations.clearHistory || "清空记录",
     equalsHowMany: translations.equalsHowMany || "等于多少"
   }
 
   const [history, setHistory] = React.useState<HistoryItem[]>([])
 
-  const loadHistory = () => {
+  const loadHistory = async () => {
     try {
-      const stored = localStorage.getItem('conversionHistory')
-      if (stored) {
-        setHistory(JSON.parse(stored))
+      const url = unitType ? `/api/recent-conversions?type=${unitType}` : '/api/recent-conversions'
+      const res = await fetch(url)
+      if (res.ok) {
+        const data = await res.json()
+        const mapped: HistoryItem[] = data.map((item: any) => ({
+          fromVal: item.source_value,
+          fromUnitId: item.source_unit,
+          fromUnitName: unitTranslations[item.source_unit] || item.source_unit,
+          fromSymbol: item.source_unit,
+          toVal: item.target_value || '?',
+          toUnitId: item.target_unit,
+          toUnitName: unitTranslations[item.target_unit] || item.target_unit,
+          toSymbol: item.target_unit,
+          timestamp: item.last_updated,
+          unitType: item.unit_type || '',
+          unitTypeName: unitTranslations[item.unit_type] || item.unit_type || ''
+        }))
+        setHistory(mapped)
       }
     } catch (e) {
       console.error("Failed to load history", e)
@@ -54,16 +68,12 @@ export function RecentConversions({ translations = {}, unitTranslations = {} }: 
   React.useEffect(() => {
     loadHistory()
     
-    const handleUpdate = () => loadHistory()
-    window.addEventListener('conversion-history-updated', handleUpdate)
-    return () => window.removeEventListener('conversion-history-updated', handleUpdate)
-  }, [])
+    // Refresh every 30s or on specific events if needed
+    const interval = setInterval(loadHistory, 30000)
+    return () => clearInterval(interval)
+  }, [unitTranslations])
 
-  const clearHistory = () => {
-    localStorage.removeItem('conversionHistory')
-    setHistory([])
-    window.dispatchEvent(new Event('conversion-history-updated'))
-  }
+  // Removed clearHistory functionality as it is now server-side driven
 
   if (history.length === 0) {
     return (
@@ -88,15 +98,6 @@ export function RecentConversions({ translations = {}, unitTranslations = {} }: 
             <History className="w-4 h-4 text-primary" />
             <CardTitle className="text-base font-bold">{t.title}</CardTitle>
         </div>
-        <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={clearHistory}
-            className="h-8 w-8 text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-            title={t.clearHistory}
-        >
-          <Trash2 className="h-4 w-4" />
-        </Button>
       </CardHeader>
       <CardContent className="p-0">
         <div className="divide-y divide-slate-50 dark:divide-border/50">
@@ -106,9 +107,11 @@ export function RecentConversions({ translations = {}, unitTranslations = {} }: 
              
              return (
              <div key={item.timestamp + i} className="py-3 px-4 hover:bg-muted/50 transition-colors cursor-pointer">
-                <p className="text-sm text-foreground font-medium">
-                    {item.fromVal} {fromName} {t.equalsHowMany} {toName}？
-                </p>
+                <a href={`/${lang}/${item.unitType}/${item.fromUnitId}-to-${item.toUnitId}/${item.fromVal}${item.fromUnitId}-to-${item.toUnitId}`} className="block">
+                    <p className="text-sm text-foreground font-medium">
+                        {item.fromVal} {fromName} {t.equalsHowMany} {toName}？
+                    </p>
+                </a>
              </div>
              )
           })}

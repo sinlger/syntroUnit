@@ -1,0 +1,98 @@
+[
+  {
+    "symbol": "b",
+    "name": "Bit",
+    "conversion": "1b = 0.125B",
+    "intro": "The smallest unit of digital storage, describing the single 0/1 state of binary data, adapted for measuring network transmission rates."
+  },
+  {
+    "symbol": "B",
+    "name": "Byte",
+    "conversion": "1B = 8b",
+    "intro": "The basic unit of digital storage, the core benchmark for measuring file size and memory capacity."
+  },
+  {
+    "symbol": "KB",
+    "name": "Kilobyte",
+    "conversion": "1KB = 1000B",
+    "intro": "Decimal small storage unit, the standard of hard disk manufacturers, adapted for measuring small text and image files."
+  },
+  {
+    "symbol": "MB",
+    "name": "Megabyte",
+    "conversion": "1MB = 1000KB = 10⁶B",
+    "intro": "Common decimal unit, marked on hard disks and USB flash drives, adapted for measuring ordinary images and documents."
+  },
+  {
+    "symbol": "GB",
+    "name": "Gigabyte",
+    "conversion": "1GB = 1000MB = 10⁹B",
+    "intro": "Mainstream decimal unit, the core measurement standard for hard disks, memory cards, and broadband traffic."
+  },
+  {
+    "symbol": "TB",
+    "name": "Terabyte",
+    "conversion": "1TB = 1000GB = 10¹²B",
+    "intro": "Decimal large-capacity unit, the mainstream measurement standard for mechanical hard disks and server storage."
+  },
+  {
+    "symbol": "PB",
+    "name": "Petabyte",
+    "conversion": "1PB = 1000TB = 10¹⁵B",
+    "intro": "Decimal ultra-large-scale unit, the measurement standard for data centers, cloud storage, and enterprise-level storage."
+  },
+  {
+    "symbol": "EB",
+    "name": "Exabyte",
+    "conversion": "1EB = 1000PB = 10¹⁸B",
+    "intro": "Decimal massive storage unit, adapted for measuring the data volume of Internet giants and national-level data centers."
+  },
+  {
+    "symbol": "ZB",
+    "name": "Zettabyte",
+    "conversion": "1ZB = 1000EB = 10²¹B",
+    "intro": "Decimal extreme storage unit, describing the total global Internet data volume and large-scale scientific research databases."
+  },
+  {
+    "symbol": "YB",
+    "name": "Yottabyte",
+    "conversion": "1YB = 1000ZB = 10²⁴B",
+    "intro": "Top decimal storage unit, only used for theoretical data volume and global data volume estimation."
+  },
+  {
+    "symbol": "KiB",
+    "name": "Kibibyte",
+    "conversion": "1KiB = 1024B",
+    "intro": "Binary small unit, the operating system standard, adapted for measuring system files and memory usage."
+  },
+  {
+    "symbol": "MiB",
+    "name": "Mebibyte",
+    "conversion": "1MiB = 1024KiB = 2²⁰B",
+    "intro": "Common binary unit, the core measurement standard for operating system memory and process usage."
+  },
+  {
+    "symbol": "GiB",
+    "name": "Gibibyte",
+    "conversion": "1GiB = 1024MiB = 2³⁰B",
+    "intro": "Mainstream binary unit, the display standard for operating system hard disk capacity and memory capacity."
+  },
+  {
+    "symbol": "TiB",
+    "name": "Tebibyte",
+    "conversion": "1TiB = 1024GiB = 2⁴⁰B",
+    "intro": "Binary large-capacity unit, the operating system measurement standard for server memory and enterprise-level storage."
+  },
+  {
+    "symbol": "PiB",
+    "name": "Pebibyte",
+    "conversion": "1PiB = 1024TiB = 2⁵⁰B",
+    "intro": "Binary ultra-large-scale unit, the operating system measurement standard for cloud servers and large-scale databases."
+  },
+  {
+    "symbol": "EiB",
+    "name": "Exbibyte",
+    "conversion": "1EiB = 1024PiB = 2⁶⁰B",
+    "intro": "Binary massive unit, adapted for measuring ultra-large-scale data centers and global distributed storage systems."
+  }
+]

@@ -20,11 +20,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { ArrowRightLeft, Calculator, Info } from "lucide-react"
-import { CalculationProcess } from "./CalculationProcess"
+import { ArrowRightLeft, Calculator, Info, ChevronDown, ChevronUp } from "lucide-react"
+import { CalculationProcess, type ProcessStep } from "./CalculationProcess"
 import { CalculationResult as CalculationResultComponent } from "./CalculationResult"
 import { getConverter } from "@/lib/converter"
 import type { Unit, UnitGroup, CalculationResult } from "@/lib/converter"
+import { useTranslations } from "@/i18n/utils"
+import { getFormulaText, normalizeTempId } from "@/lib/formulas"
+import Big from "big.js"
 
 export type { Unit, UnitGroup, CalculationResult }
 
@@ -36,6 +39,7 @@ interface UnitConverterProps {
   unitType: string
   translations?: Record<string, string>
   title?: string
+  lang?: string
   uiTranslations?: {
     description?: string
     inputPlaceholder?: string
@@ -63,12 +67,15 @@ interface UnitConverterProps {
     step2Calc?: string
     resultText?: string
     baseUnitDefault?: string
+    supportedUnitsLabel?: string
   }
   defaultSourceUnit?: string
   defaultTargetUnit?: string
+  defaultAmount?: string
 }
 
-export function UnitConverter({ data, unitType, translations = {}, title, uiTranslations = {}, defaultSourceUnit, defaultTargetUnit }: UnitConverterProps) {
+export function UnitConverter({ data, unitType, translations = {}, title, uiTranslations = {}, defaultSourceUnit, defaultTargetUnit, defaultAmount, lang = 'en' }: UnitConverterProps) {
+  const tGlobal = useTranslations(lang as any)
   const t = {
     description: uiTranslations.description || "支持多种常用{typeName}双向转换",
     inputPlaceholder: uiTranslations.inputPlaceholder || "请输入数值",
@@ -96,22 +103,44 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
     step2Calc: uiTranslations.step2Calc || "代入公式计算：{value} ÷ {ratio} = {result} {targetUnit}",
     resultText: uiTranslations.resultText || "转换结果：{sourceValue} {sourceUnit} = {resultValue} {targetUnit}",
     baseUnitDefault: uiTranslations.baseUnitDefault || "基准单位",
+    supportedUnitsLabel: uiTranslations.supportedUnitsLabel || "支持单位：",
   }
 
   const groups = React.useMemo(() => (Array.isArray(data) ? data : data.groups || []), [data])
-  const allUnits = React.useMemo(() => groups.flatMap((g) => g.units), [groups])
+  const allUnits = React.useMemo(() => groups.flatMap((g) => g.units || []).filter(u => u && u.id), [groups])
 
-  const [amount, setAmount] = React.useState<string>("")
+  const [amount, setAmount] = React.useState<string>(defaultAmount || "")
   const [fromUnitId, setFromUnitId] = React.useState<string>(defaultSourceUnit || "")
   const [toUnitId, setToUnitId] = React.useState<string>(defaultTargetUnit || "")
   const [showProcess, setShowProcess] = React.useState(true)
-  const [hasConverted, setHasConverted] = React.useState(false)
-
-  // Update state when defaults change (e.g. navigation)
+  // Initialize hasConverted based on whether we have all required defaults
+  const [hasConverted, setHasConverted] = React.useState(!!(defaultAmount && defaultSourceUnit && defaultTargetUnit))
+  
+  // Start with true to handle the initial render case where we might have defaults
+   const isPropUpdate = React.useRef(true)
+ 
+   // Update state when defaults change (e.g. navigation)
   React.useEffect(() => {
-    if (defaultSourceUnit) setFromUnitId(defaultSourceUnit)
-    if (defaultTargetUnit) setToUnitId(defaultTargetUnit)
-  }, [defaultSourceUnit, defaultTargetUnit])
+    let changed = false
+    if (defaultSourceUnit && defaultSourceUnit !== fromUnitId) { 
+        setFromUnitId(defaultSourceUnit)
+        changed = true 
+    }
+    if (defaultTargetUnit && defaultTargetUnit !== toUnitId) { 
+        setToUnitId(defaultTargetUnit)
+        changed = true 
+    }
+    if (defaultAmount && defaultAmount !== amount) {
+        setAmount(defaultAmount)
+        changed = true
+    }
+    
+    if (changed) {
+        isPropUpdate.current = true
+        // Auto convert on prop change (initial load or navigation)
+        setHasConverted(true)
+    }
+  }, [defaultSourceUnit, defaultTargetUnit, defaultAmount])
 
   // Initialize defaults if not set
   React.useEffect(() => {
@@ -126,6 +155,15 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
 
   // Reset converted state when inputs change
   React.useEffect(() => {
+    if (isPropUpdate.current) {
+        isPropUpdate.current = false
+        // If this was a prop update and we have valid defaults, ensure converted state is true
+        if (defaultAmount && defaultSourceUnit && defaultTargetUnit) {
+             setHasConverted(true)
+        }
+        return
+    }
+    // Manual input change: Do NOT auto convert, wait for button click
     setHasConverted(false)
   }, [amount, fromUnitId, toUnitId])
 
@@ -135,6 +173,7 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
   }
   
   const handleConvert = () => {
+    // Manual trigger
     if (amount && fromUnitId && toUnitId) {
       setHasConverted(true)
     }
@@ -160,6 +199,92 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
   const toUnit = allUnits.find((u) => u.id === toUnitId)
   const typeName = title || translations[unitType] || unitType
 
+  const processSteps = React.useMemo<{ coreFormula?: { title: string, steps: string[] }, steps: ProcessStep[] } | null>(() => {
+    if (!calculation || !fromUnit || !toUnit) return null
+
+    const steps: ProcessStep[] = []
+    let coreFormula = undefined
+
+    const sourceName = translations[fromUnit.id] || fromUnit.name || fromUnit.id
+    const targetName = translations[toUnit.id] || toUnit.name || toUnit.id
+    
+    // Temperature Logic
+    if (unitType === 'temperature' || normalizeTempId(fromUnit.id)) {
+        const formulaInfo = getFormulaText(unitType, fromUnit, toUnit, sourceName, targetName, tGlobal)
+        
+        if (formulaInfo.formula) {
+            coreFormula = {
+                title: tGlobal('components.conversion_table.formula_title') || "Conversion Formula",
+                steps: [formulaInfo.formula]
+            }
+
+            steps.push({
+                title: tGlobal('components.unit_converter.process_title') || "Detailed Process",
+                formula: formulaInfo.desc,
+                calculation: `${amount} ${fromUnit.symbol} = ${calculation.result} ${toUnit.symbol}`
+            })
+        }
+    } 
+    // Linear Logic
+    else if (calculation.baseUnit) {
+        const baseUnitName = translations[calculation.baseUnit.id] || calculation.baseUnit.name || calculation.baseUnit.id
+        const isSourceBase = fromUnit.id === calculation.baseUnit.id
+        const isTargetBase = toUnit.id === calculation.baseUnit.id
+
+        coreFormula = {
+            title: t.formulaTitle.replace(/{baseUnit}/g, baseUnitName),
+            steps: []
+        }
+        
+        if (!isSourceBase) {
+             coreFormula.steps.push(t.formulaStep1Desc.replace(/{baseUnit}/g, baseUnitName))
+        }
+        if (!isTargetBase) {
+             coreFormula.steps.push(t.formulaStep2Desc.replace(/{baseUnit}/g, baseUnitName))
+        }
+
+        // Step 1: Source -> Base
+        if (!isSourceBase) {
+            const ratio = fromUnit.ratio
+            const resultFormatted = calculation.baseValue.toPrecision(10).replace(/\.?0+$/, "")
+            
+            steps.push({
+                title: t.step1Title.replace('{sourceUnit}', sourceName).replace('{baseUnit}', baseUnitName),
+                formula: t.step1Formula
+                    .replace('{sourceUnit}', sourceName)
+                    .replace('{baseUnit}', baseUnitName)
+                    .replace('{ratio}', ratio.toString()),
+                calculation: t.step1Calc
+                    .replace('{value}', amount)
+                    .replace('{ratio}', ratio.toString())
+                    .replace('{result}', resultFormatted)
+                    .replace('{baseUnit}', baseUnitName)
+            })
+        }
+
+        // Step 2: Base -> Target
+        if (!isTargetBase) {
+            const ratio = toUnit.ratio
+            const step1Value = !isSourceBase ? calculation.baseValue.toPrecision(10).replace(/\.?0+$/, "") : amount
+            
+            steps.push({
+                title: t.step2Title.replace('{baseUnit}', baseUnitName).replace('{targetUnit}', targetName),
+                formula: t.step2Formula
+                    .replace('{targetUnit}', targetName)
+                    .replace('{baseUnit}', baseUnitName)
+                    .replace('{ratio}', ratio.toString()),
+                calculation: t.step2Calc
+                    .replace('{value}', step1Value)
+                    .replace('{ratio}', ratio.toString())
+                    .replace('{result}', calculation.result)
+                    .replace('{targetUnit}', targetName)
+            })
+        }
+    }
+
+    return { coreFormula, steps }
+  }, [calculation, unitType, fromUnit, toUnit, translations, tGlobal, t, amount])
+
   // Helper to get display name
   const getName = (unit: Unit | undefined) => {
     if (!unit) return ""
@@ -172,42 +297,35 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
     return allUnits.length > 8 ? `${unitsList}...` : unitsList
   }, [allUnits, translations])
 
-  // Save to history
+  // Record to DB
   React.useEffect(() => {
+    // Requirement:
+    // 1. Duplicate data increases count (Handled by API)
+    // 2. All conversions are stored
+    // 3. Access via [conversion].astro is also counted (Initial load / Prop updates)
+    // 4. Non-blocking (useEffect + fetch is async)
+    
     if (hasConverted && calculation) {
-      const historyItem = {
-        fromVal: amount,
-        fromUnitId: calculation.sourceUnit.id,
-        fromUnitName: getName(calculation.sourceUnit),
-        fromSymbol: calculation.sourceUnit.symbol,
-        toVal: calculation.result,
-        toUnitId: calculation.targetUnit.id,
-        toUnitName: getName(calculation.targetUnit),
-        toSymbol: calculation.targetUnit.symbol,
-        timestamp: Date.now(),
-        unitType: unitType,
-        unitTypeName: typeName
-      }
-      
-      try {
-        const existing = JSON.parse(localStorage.getItem('conversionHistory') || '[]')
-        const last = existing[0]
-        // Simple duplicate check
-        const isSame = last && 
-           last.fromVal === historyItem.fromVal && 
-           last.fromSymbol === historyItem.fromSymbol &&
-           last.toSymbol === historyItem.toSymbol
-           
-        if (!isSame) {
-            const newHistory = [historyItem, ...existing].slice(0, 10)
-            localStorage.setItem('conversionHistory', JSON.stringify(newHistory))
-            window.dispatchEvent(new Event('conversion-history-updated'))
-        }
-      } catch (e) {
-        console.error(e)
-      }
+      // Record to DB (Debounced to avoid spamming on rapid changes if logic allows, 
+      // though here hasConverted usually gates it well)
+      const timer = setTimeout(() => {
+         fetch('/api/record-conversion', {
+             method: 'POST',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify({
+               source_unit: fromUnit.id,
+               target_unit: toUnit.id,
+               source_value: parseFloat(amount),
+               target_value: parseFloat(calculation.result),
+               unit_type: unitType,
+               timestamp: Date.now()
+             })
+          }).catch(console.error)
+      }, 2000) // Debounce 2s
+
+      return () => clearTimeout(timer)
     }
-  }, [hasConverted, calculation, unitType, typeName])
+  }, [hasConverted, calculation, fromUnit, toUnit, amount, unitType])
 
   return (
     <div className="w-full mx-auto font-sans">
@@ -297,12 +415,28 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
               />
 
               {/* Detailed Process Toggle */}
-              <div className="mt-4">
+              <div className="flex justify-center mt-4">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowProcess(!showProcess)}
+                  className="text-muted-foreground hover:text-foreground flex items-center gap-1"
+                >
+                  {t.processTitle}
+                  {showProcess ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                </Button>
+              </div>
+
+              <div className="mt-2">
                 <CalculationProcess 
-                  t={t}
-                  calculation={calculation}
-                  amount={amount}
-                  getName={getName}
+                  title={t.processTitle}
+                  coreFormula={processSteps?.coreFormula}
+                  steps={processSteps?.steps || []}
+                  resultText={t.resultText
+                      .replace('{sourceValue}', amount)
+                      .replace('{sourceUnit}', fromUnit?.symbol || '')
+                      .replace('{resultValue}', calculation.result)
+                      .replace('{targetUnit}', toUnit?.symbol || '')}
                   showProcess={showProcess}
                 />
               </div>
@@ -312,7 +446,7 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
         
         <CardFooter className="justify-center py-6 border-t border-slate-100 dark:border-border/50 mx-6 px-0">
            <p className="text-xs text-muted-foreground leading-relaxed text-center">
-             支持单位：{supportedUnitsText}
+             {t.supportedUnitsLabel}{supportedUnitsText}
            </p>
         </CardFooter>
       </Card>

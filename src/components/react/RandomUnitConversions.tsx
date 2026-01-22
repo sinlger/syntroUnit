@@ -39,18 +39,38 @@ export function RandomUnitConversions({
   conversionFormat = "{source} to {target}" 
 }: RandomUnitConversionsProps) {
   const groups = React.useMemo(() => (Array.isArray(data) ? data : data.groups || []), [data])
-  const allUnits = React.useMemo(() => groups.flatMap((g) => g.units), [groups])
+  const allUnits = React.useMemo(() => groups.flatMap((g) => g.units || []).filter(u => u && u.id), [groups])
 
-  // Generate 5 random conversion pairs
+  // Simple seeded random function to ensure server/client consistency
+  const seededRandom = React.useCallback((seed: number) => {
+    const m = 0x80000000;
+    const a = 1103515245;
+    const c = 12345;
+    let state = seed ? seed : Math.floor(Math.random() * (m - 1));
+    return function() {
+        state = (a * state + c) % m;
+        return state / (m - 1);
+    }
+  }, []);
+
+  // Generate 20 random conversion pairs
   const randomPairs = React.useMemo(() => {
     if (allUnits.length < 2) return []
     
+    // Create a seed based on unitType string
+    let seed = 0;
+    for (let i = 0; i < unitType.length; i++) {
+        seed = ((seed << 5) - seed) + unitType.charCodeAt(i);
+        seed |= 0;
+    }
+    const rand = seededRandom(Math.abs(seed));
+
     const pairs: { source: Unit, target: Unit }[] = []
     const seen = new Set<string>()
     
     while (pairs.length < 20) {
-      const source = allUnits[Math.floor(Math.random() * allUnits.length)]
-      const target = allUnits[Math.floor(Math.random() * allUnits.length)]
+      const source = allUnits[Math.floor(rand() * allUnits.length)]
+      const target = allUnits[Math.floor(rand() * allUnits.length)]
       
       if (source.id !== target.id) {
         const key = `${source.id}-${target.id}`
@@ -65,7 +85,7 @@ export function RandomUnitConversions({
     }
     
     return pairs
-  }, [allUnits])
+  }, [allUnits, unitType, seededRandom])
 
   if (randomPairs.length === 0) return null
 

@@ -1,29 +1,24 @@
 import * as React from "react"
 import { Calculator } from "lucide-react"
-import type { Unit, CalculationResult } from "@/lib/converter"
+
+export interface ProcessStep {
+  title: string
+  formula: string
+  calculation: string
+}
 
 interface CalculationProcessProps {
-  t: {
-    processTitle: string
-    formulaTitle: string
-    baseUnitDefault: string
-    formulaStep1Desc: string
-    formulaStep2Desc: string
-    step1Title: string
-    step1Formula: string
-    step1Calc: string
-    step2Title: string
-    step2Formula: string
-    step2Calc: string
-    resultText: string
+  title: string
+  coreFormula?: {
+    title: string
+    steps: string[]
   }
-  calculation: CalculationResult
-  amount: string
-  getName: (unit: Unit | undefined) => string
+  steps: ProcessStep[]
+  resultText: string
   showProcess: boolean
 }
 
-export function CalculationProcess({ t, calculation, amount, getName, showProcess }: CalculationProcessProps) {
+export function CalculationProcess({ title, coreFormula, steps, resultText, showProcess }: CalculationProcessProps) {
   if (!showProcess) return null
 
   return (
@@ -31,69 +26,40 @@ export function CalculationProcess({ t, calculation, amount, getName, showProces
       {/* Header */}
       <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-base">
         <Calculator className="w-5 h-5" />
-        {t.processTitle}
+        {title}
       </div>
 
       {/* Core Formula */}
-      <div className="space-y-3">
-        <h4 className="font-semibold text-blue-600 dark:text-blue-400">
-          {t.formulaTitle.replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)}
-        </h4>
-        <div className="space-y-2 pl-4 text-muted-foreground leading-relaxed">
-          <p dangerouslySetInnerHTML={{ __html: t.formulaStep1Desc.replace(/\{baseUnit\}/g, getName(calculation.baseUnit) || t.baseUnitDefault) }} />
-          <p dangerouslySetInnerHTML={{ __html: t.formulaStep2Desc.replace(/\{baseUnit\}/g, getName(calculation.baseUnit) || t.baseUnitDefault) }} />
+      {coreFormula && (
+        <div className="space-y-3">
+          <h4 className="font-semibold text-blue-600 dark:text-blue-400">
+            {coreFormula.title}
+          </h4>
+          <div className="space-y-2 pl-4 text-muted-foreground leading-relaxed">
+            {coreFormula.steps.map((step, idx) => (
+              <p key={idx} dangerouslySetInnerHTML={{ __html: step }} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="space-y-6 border-t border-blue-100 dark:border-blue-900/20 pt-6">
-        {/* Step 1 */}
-        <div className="space-y-2">
-          <div className="text-blue-500 dark:text-blue-400 font-bold">
-            {t.step1Title
-              .replace('{sourceUnit}', getName(calculation.sourceUnit))
-              .replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)}
+        {steps.map((step, index) => (
+          <div key={index} className="space-y-2">
+            <div className="text-blue-500 dark:text-blue-400 font-bold">
+              {step.title}
+            </div>
+            <div className="pl-4 space-y-2 text-muted-foreground">
+              <p>{step.formula}</p>
+              <p>{step.calculation}</p>
+            </div>
           </div>
-          <div className="pl-4 space-y-2 text-muted-foreground">
-            <p>{t.step1Formula
-              .replace('{sourceUnit}', getName(calculation.sourceUnit))
-              .replace('{ratio}', calculation.sRatio.toString())
-              .replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)}</p>
-            <p>{t.step1Calc
-              .replace('{value}', amount)
-              .replace('{ratio}', calculation.sRatio.toString())
-              .replace('{result}', calculation.baseValue.toString())
-              .replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)}</p>
-          </div>
-        </div>
-
-        {/* Step 2 */}
-        <div className="space-y-2">
-          <div className="text-blue-500 dark:text-blue-400 font-bold">
-            {t.step2Title
-              .replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)
-              .replace('{targetUnit}', getName(calculation.targetUnit))}
-          </div>
-          <div className="pl-4 space-y-2 text-muted-foreground">
-            <p>{t.step2Formula
-              .replace('{targetUnit}', getName(calculation.targetUnit))
-              .replace('{ratio}', calculation.tRatio.toString())
-              .replace('{baseUnit}', getName(calculation.baseUnit) || t.baseUnitDefault)}</p>
-            <p>{t.step2Calc
-              .replace('{value}', calculation.baseValue.toString())
-              .replace('{ratio}', calculation.tRatio.toString())
-              .replace('{result}', calculation.result)
-              .replace('{targetUnit}', getName(calculation.targetUnit))}</p>
-          </div>
-        </div>
+        ))}
 
         {/* Result */}
         <div className="pt-2">
            <div className="text-blue-600 dark:text-blue-400 font-bold text-base">
-             {t.resultText
-               .replace('{sourceValue}', amount)
-               .replace('{sourceUnit}', getName(calculation.sourceUnit))
-               .replace('{resultValue}', calculation.result)
-               .replace('{targetUnit}', getName(calculation.targetUnit))}
+             {resultText}
            </div>
         </div>
       </div>

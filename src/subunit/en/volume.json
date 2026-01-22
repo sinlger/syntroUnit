@@ -1,0 +1,230 @@
+[
+  {
+    "symbol": "mm3",
+    "name": "Cubic Millimeter",
+    "conversion": "1mm3 = 10⁻⁹m3 = 0.001mL",
+    "intro": "Microscopic volume unit, suitable for measuring the volume of precision parts, biological cells, and micro-reagents."
+  },
+  {
+    "symbol": "cm3",
+    "name": "Cubic Centimeter",
+    "conversion": "1cm3 = 10⁻⁶m3 = 1mL",
+    "intro": "Unit for small containers/reagents, adapted for volume measurement of cosmetics, pharmaceutical reagents, and jewelry (equivalent to milliliters)."
+  },
+  {
+    "symbol": "dm3",
+    "name": "Cubic Decimeter",
+    "conversion": "1dm3 = 0.001m3 = 1L",
+    "intro": "Medium volume unit, mostly used for measuring household containers, liquid raw materials, and small storage spaces."
+  },
+  {
+    "symbol": "m3",
+    "name": "Cubic Meter",
+    "conversion": "1m3 = 1000dm3 = 35.3147ft3",
+    "intro": "International benchmark unit of volume, the core measurement standard for construction, logistics, water conservancy, and industrial warehousing."
+  },
+  {
+    "symbol": "km3",
+    "name": "Cubic Kilometer",
+    "conversion": "1km3 = 10⁹m3",
+    "intro": "Ultra-large-scale volume unit, suitable for describing the volume of lakes, reservoirs, oilfields, and geological structures."
+  },
+  {
+    "symbol": "mL",
+    "name": "Milliliter",
+    "conversion": "1mL = 1cm3 = 0.001L",
+    "intro": "Core unit for daily liquids, the mainstream measurement standard for beverages, medicines, cosmetics, and condiments."
+  },
+  {
+    "symbol": "L",
+    "name": "Liter",
+    "conversion": "1L = 1dm3 = 1000mL ≈ 0.2642gal_us",
+    "intro": "Mainstream metric unit for liquids, adapted for volume measurement of drinking water, fuel oil, and food processing raw materials."
+  },
+  {
+    "symbol": "in3",
+    "name": "Cubic Inch",
+    "conversion": "1in3 ≈ 16.3871cm3 = 0.0006ft3",
+    "intro": "Unit for small components in the UK and US, mostly used for measuring the volume of mechanical parts, hardware accessories, and small containers."
+  },
+  {
+    "symbol": "ft3",
+    "name": "Cubic Foot",
+    "conversion": "1ft3 = 1728in3 ≈ 0.0283m3",
+    "intro": "Core unit for construction and warehousing in the UK and US, adapted for measuring the volume of housing space, containers, and storage rooms."
+  },
+  {
+    "symbol": "yd3",
+    "name": "Cubic Yard",
+    "conversion": "1yd3 = 27ft3 ≈ 0.7646m3",
+    "intro": "Unit for engineering and logistics in the UK and US, mostly used for measuring earthwork projects, building material transportation, and garbage removal."
+  },
+  {
+    "symbol": "fl_oz_us",
+    "name": "US Fluid Ounce",
+    "conversion": "1fl_oz_us ≈ 29.5735mL",
+    "intro": "Small liquid unit in the United States, suitable for measurement scenarios of beverages, condiments, cosmetics, and pharmaceutical preparations."
+  },
+  {
+    "symbol": "gal_us",
+    "name": "US Gallon",
+    "conversion": "1gal_us = 128fl_oz_us ≈ 3.7854L",
+    "intro": "Mainstream liquid unit in the United States, the core measurement standard for fuel oil, drinking water, and chemical raw materials."
+  },
+  {
+    "symbol": "qt_us",
+    "name": "US Quart",
+    "conversion": "1qt_us = 32fl_oz_us ≈ 0.9464L",
+    "intro": "Medium liquid unit in the United States, adapted for batch measurement of milk, edible oil, and industrial reagents."
+  },
+  {
+    "symbol": "pt_us",
+    "name": "US Pint",
+    "conversion": "1pt_us = 16fl_oz_us ≈ 0.4732L",
+    "intro": "Daily liquid unit in the United States, mostly used for retail measurement of dairy products, alcoholic beverages, and condiments."
+  },
+  {
+    "symbol": "cup_us",
+    "name": "US Cup",
+    "conversion": "1cup_us = 8fl_oz_us ≈ 236.59mL",
+    "intro": "Specialized unit for cooking in the United States, a standardized measuring tool for baking and catering ingredients."
+  },
+  {
+    "symbol": "tbsp_us",
+    "name": "US Tablespoon",
+    "conversion": "1tbsp_us ≈ 14.7868mL",
+    "intro": "Small cooking unit in the United States, adapted for precise measurement of sauces, edible oil, and spices."
+  },
+  {
+    "symbol": "tsp_us",
+    "name": "US Teaspoon",
+    "conversion": "1tsp_us ≈ 4.9289mL",
+    "intro": "Micro cooking unit in the United States, mostly used for precise measurement of salt, sugar, and condiments."
+  },
+  {
+    "symbol": "fl_oz_uk",
+    "name": "UK Fluid Ounce",
+    "conversion": "1fl_oz_uk ≈ 28.4131mL",
+    "intro": "Small liquid unit in the UK and Commonwealth countries, suitable for measurement of beverages, medicines, and cosmetics."
+  },
+  {
+    "symbol": "gal_uk",
+    "name": "UK Gallon",
+    "conversion": "1gal_uk = 160fl_oz_uk ≈ 4.5461L",
+    "intro": "Mainstream liquid unit in the UK and Commonwealth countries, the measurement standard for fuel oil, chemicals, and agricultural irrigation."
+  },
+  {
+    "symbol": "qt_uk",
+    "name": "UK Quart",
+    "conversion": "1qt_uk = 40fl_oz_uk ≈ 1.1365L",
+    "intro": "Medium liquid unit in the UK, adapted for batch measurement of dairy products, alcoholic beverages, and industrial raw materials."
+  },
+  {
+    "symbol": "pt_uk",
+    "name": "UK Pint",
+    "conversion": "1pt_uk = 20fl_oz_uk ≈ 0.5683L",
+    "intro": "Daily liquid unit in the UK, the core standard for retail measurement of beer, milk, and beverages."
+  },
+  {
+    "symbol": "c_ge",
+    "name": "Chinese He",
+    "conversion": "1Chinese He = 0.1Chinese Sheng = 100mL",
+    "intro": "Traditional small volume unit in China, mostly used for small-quantity measurement of traditional grain, oil, and alcoholic drinks."
+  },
+  {
+    "symbol": "c_sheng",
+    "name": "Chinese Sheng",
+    "conversion": "1Chinese Sheng = 10Chinese He = 1L",
+    "intro": "Core traditional volume unit in China, adapted for traditional measurement scenarios of grain, oil, alcoholic drinks, and agricultural materials."
+  },
+  {
+    "symbol": "c_dou",
+    "name": "Chinese Dou",
+    "conversion": "1Chinese Dou = 10Chinese Sheng = 10L",
+    "intro": "Traditional medium volume unit in China, mostly used for batch measurement of grain and agricultural materials."
+  },
+  {
+    "symbol": "c_dan",
+    "name": "Chinese Dan",
+    "conversion": "1Chinese Dan = 10Chinese Dou = 100L",
+    "intro": "Traditional bulk volume unit in China, suitable for batch trading measurement of grain, oil, and other agricultural products."
+  },
+  {
+    "symbol": "de_scheffel",
+    "name": "Scheffel (Germany)",
+    "conversion": "1Scheffel ≈ 50L",
+    "intro": "Traditional volume unit in Germany, mostly used for batch measurement of grain, feed, and alcoholic drinks."
+  },
+  {
+    "symbol": "fr_muid",
+    "name": "Muid (France)",
+    "conversion": "1Muid ≈ 1300L",
+    "intro": "Traditional bulk volume unit in France, adapted for batch measurement of wine, grain, and building materials."
+  },
+  {
+    "symbol": "fr_pinte",
+    "name": "French Pinte",
+    "conversion": "1French Pinte ≈ 0.5L",
+    "intro": "Daily liquid unit in France, mostly used for retail measurement of wine, beverages, and dairy products."
+  },
+  {
+    "symbol": "ru_vedro",
+    "name": "Vedro (Russia)",
+    "conversion": "1Vedro ≈ 12.3L",
+    "intro": "Traditional liquid unit in Russia, suitable for measurement scenarios of vodka, drinking water, and fuel oil."
+  },
+  {
+    "symbol": "it_barile",
+    "name": "Barile (Italy)",
+    "conversion": "1Barile ≈ 100L",
+    "intro": "Traditional volume unit in Italy, mostly used for batch trading measurement of olive oil and wine."
+  },
+  {
+    "symbol": "in_khok",
+    "name": "Khok (India)",
+    "conversion": "1Khok ≈ 13.5L",
+    "intro": "Traditional volume unit in India, adapted for daily measurement of grain, edible oil, and drinking water."
+  },
+  {
+    "symbol": "th_sao",
+    "name": "Sao (Thailand)",
+    "conversion": "1Sao ≈ 20L",
+    "intro": "Traditional volume unit in Thailand, mostly used for batch measurement of rice, agricultural materials, and drinking water."
+  },
+  {
+    "symbol": "id_gelas",
+    "name": "Gelas (Indonesia)",
+    "conversion": "1Gelas ≈ 200mL",
+    "intro": "Daily small volume unit in Indonesia, suitable for measurement scenarios of beverages, tea, and condiments."
+  },
+  {
+    "symbol": "sa_saah",
+    "name": "Sa'ah (Saudi Arabia)",
+    "conversion": "1Sa'ah ≈ 40L",
+    "intro": "Traditional unit in Saudi Arabia, mostly used for batch measurement of water, oil, and grain."
+  },
+  {
+    "symbol": "eg_ardeb",
+    "name": "Ardeb (Egypt)",
+    "conversion": "1Ardeb ≈ 198L",
+    "intro": "Core agricultural unit in Egypt, adapted for batch measurement of wheat, corn, cotton, and other agricultural products."
+  },
+  {
+    "symbol": "mx_fanega",
+    "name": "Fanega (Mexico)",
+    "conversion": "1Fanega ≈ 55L",
+    "intro": "Traditional agricultural unit in Mexico, mostly used for batch measurement of corn, beans, and grain."
+  },
+  {
+    "symbol": "br_alqueire",
+    "name": "Alqueire (Brazil)",
+    "conversion": "1Alqueire ≈ 2500L",
+    "intro": "Bulk agricultural unit in Brazil, suitable for measurement scenarios of coffee, soybeans, sugarcane, and other agricultural products."
+  },
+  {
+    "symbol": "za_bag",
+    "name": "Bag (South Africa)",
+    "conversion": "1Bag ≈ 90L",
+    "intro": "General volume unit in South Africa, mostly used for batch measurement of grain, cement, and chemical fertilizers."
+  }
+]

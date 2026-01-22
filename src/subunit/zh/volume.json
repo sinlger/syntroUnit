@@ -1,0 +1,230 @@
+[
+  {
+    "symbol": "mm3",
+    "name": "立方毫米",
+    "conversion": "1mm3 = 10⁻⁹m3 = 0.001mL",
+    "intro": "微观体积单位，适用于精密零件、生物细胞、微小试剂的体积计量。"
+  },
+  {
+    "symbol": "cm3",
+    "name": "立方厘米",
+    "conversion": "1cm3 = 10⁻⁶m3 = 1mL",
+    "intro": "小型容器/试剂单位，适配化妆品、医药试剂、珠宝体积（等效毫升）计量。"
+  },
+  {
+    "symbol": "dm3",
+    "name": "立方分米",
+    "conversion": "1dm3 = 0.001m3 = 1L",
+    "intro": "中等体积单位，多用于家用容器、液体原料、小型储物空间计量。"
+  },
+  {
+    "symbol": "m3",
+    "name": "立方米",
+    "conversion": "1m3 = 1000dm3 = 35.3147ft3",
+    "intro": "国际体积基准单位，建筑、物流、水利、工业仓储的核心计量标准。"
+  },
+  {
+    "symbol": "km3",
+    "name": "立方千米",
+    "conversion": "1km3 = 10⁹m3",
+    "intro": "超大尺度体积单位，适配湖泊、水库、油田、地质构造的体积描述。"
+  },
+  {
+    "symbol": "mL",
+    "name": "毫升",
+    "conversion": "1mL = 1cm3 = 0.001L",
+    "intro": "日常液体核心单位，饮料、药品、化妆品、调料的主流计量标准。"
+  },
+  {
+    "symbol": "L",
+    "name": "升",
+    "conversion": "1L = 1dm3 = 1000mL ≈ 0.2642gal_us",
+    "intro": "公制液体主流单位，适配饮用水、燃油、食品加工原料的体积计量。"
+  },
+  {
+    "symbol": "in3",
+    "name": "立方英寸",
+    "conversion": "1in3 ≈ 16.3871cm3 = 0.0006ft3",
+    "intro": "英美小型构件单位，多用于机械零件、五金配件、小型容器体积计量。"
+  },
+  {
+    "symbol": "ft3",
+    "name": "立方英尺",
+    "conversion": "1ft3 = 1728in3 ≈ 0.0283m3",
+    "intro": "英美建筑、仓储核心单位，适配房屋空间、集装箱、储物间体积计量。"
+  },
+  {
+    "symbol": "yd3",
+    "name": "立方码",
+    "conversion": "1yd3 = 27ft3 ≈ 0.7646m3",
+    "intro": "英美工程、物流单位，多用于土石方工程、建材运输、垃圾清运计量。"
+  },
+  {
+    "symbol": "fl_oz_us",
+    "name": "美制液盎司",
+    "conversion": "1fl_oz_us ≈ 29.5735mL",
+    "intro": "美国液体小单位，适配饮料、调料、化妆品、医药制剂的计量场景。"
+  },
+  {
+    "symbol": "gal_us",
+    "name": "美制加仑",
+    "conversion": "1gal_us = 128fl_oz_us ≈ 3.7854L",
+    "intro": "美国液体主流单位，燃油、饮用水、化工原料的核心计量标准。"
+  },
+  {
+    "symbol": "qt_us",
+    "name": "美制夸脱",
+    "conversion": "1qt_us = 32fl_oz_us ≈ 0.9464L",
+    "intro": "美国中等液体单位，适配牛奶、食用油、工业试剂的批量计量。"
+  },
+  {
+    "symbol": "pt_us",
+    "name": "美制品脱",
+    "conversion": "1pt_us = 16fl_oz_us ≈ 0.4732L",
+    "intro": "美国日常液体单位，多用于乳制品、酒类、调味品的零售计量。"
+  },
+  {
+    "symbol": "cup_us",
+    "name": "美制量杯",
+    "conversion": "1cup_us = 8fl_oz_us ≈ 236.59mL",
+    "intro": "美国烹饪专用单位，烘焙、餐饮配料的标准化计量工具。"
+  },
+  {
+    "symbol": "tbsp_us",
+    "name": "美制汤勺",
+    "conversion": "1tbsp_us ≈ 14.7868mL",
+    "intro": "美国烹饪小单位，适配酱料、食用油、香料的精准添加计量。"
+  },
+  {
+    "symbol": "tsp_us",
+    "name": "美制茶勺",
+    "conversion": "1tsp_us ≈ 4.9289mL",
+    "intro": "美国烹饪微量单位，多用于盐、糖、调味品的精准计量。"
+  },
+  {
+    "symbol": "fl_oz_uk",
+    "name": "英制液盎司",
+    "conversion": "1fl_oz_uk ≈ 28.4131mL",
+    "intro": "英国及英联邦液体小单位，适配饮料、医药、化妆品计量。"
+  },
+  {
+    "symbol": "gal_uk",
+    "name": "英制加仑",
+    "conversion": "1gal_uk = 160fl_oz_uk ≈ 4.5461L",
+    "intro": "英国及英联邦液体主流单位，燃油、化工、农业灌溉计量标准。"
+  },
+  {
+    "symbol": "qt_uk",
+    "name": "英制夸脱",
+    "conversion": "1qt_uk = 40fl_oz_uk ≈ 1.1365L",
+    "intro": "英国中等液体单位，适配乳制品、酒类、工业原料的批量计量。"
+  },
+  {
+    "symbol": "pt_uk",
+    "name": "英制品脱",
+    "conversion": "1pt_uk = 20fl_oz_uk ≈ 0.5683L",
+    "intro": "英国日常液体单位，啤酒、牛奶、饮料的零售计量核心标准。"
+  },
+  {
+    "symbol": "c_ge",
+    "name": "市合",
+    "conversion": "1市合 = 0.1市升 = 100mL",
+    "intro": "中国传统小体积单位，多用于传统粮油、酒水的小额计量。"
+  },
+  {
+    "symbol": "c_sheng",
+    "name": "市升",
+    "conversion": "1市升 = 10市合 = 1L",
+    "intro": "中国市制核心体积单位，适配粮油、酒水、农资的传统计量场景。"
+  },
+  {
+    "symbol": "c_dou",
+    "name": "市斗",
+    "conversion": "1市斗 = 10市升 = 10L",
+    "intro": "中国传统中等体积单位，多用于粮食、农资的批量计量。"
+  },
+  {
+    "symbol": "c_dan",
+    "name": "市石",
+    "conversion": "1市石 = 10市斗 = 100L",
+    "intro": "中国传统大宗体积单位，适配粮食、油料等农产品的批量交易。"
+  },
+  {
+    "symbol": "de_scheffel",
+    "name": "谢菲尔 (Scheffel，德)",
+    "conversion": "1de_scheffel ≈ 50L",
+    "intro": "德国传统体积单位，多用于谷物、饲料、酒类的批量计量。"
+  },
+  {
+    "symbol": "fr_muid",
+    "name": "米伊 (Muid，法)",
+    "conversion": "1fr_muid ≈ 1300L",
+    "intro": "法国传统大宗体积单位，适配葡萄酒、谷物、建材的批量计量。"
+  },
+  {
+    "symbol": "fr_pinte",
+    "name": "法制品脱 (Pinte，法)",
+    "conversion": "1fr_pinte ≈ 0.5L",
+    "intro": "法国日常液体单位，多用于葡萄酒、饮料、乳制品的零售计量。"
+  },
+  {
+    "symbol": "ru_vedro",
+    "name": "维德罗 (Vedro，俄)",
+    "conversion": "1ru_vedro ≈ 12.3L",
+    "intro": "俄罗斯传统液体单位，适配伏特加、饮用水、燃油的计量场景。"
+  },
+  {
+    "symbol": "it_barile",
+    "name": "巴利莱 (Barile，意)",
+    "conversion": "1it_barile ≈ 100L",
+    "intro": "意大利传统体积单位，多用于橄榄油、葡萄酒的批量交易计量。"
+  },
+  {
+    "symbol": "in_khok",
+    "name": "霍克 (Khok，印)",
+    "conversion": "1in_khok ≈ 13.5L",
+    "intro": "印度传统体积单位，适配粮食、食用油、饮用水的日常计量。"
+  },
+  {
+    "symbol": "th_sao",
+    "name": "邵 (Sao，泰)",
+    "conversion": "1th_sao ≈ 20L",
+    "intro": "泰国传统体积单位，多用于大米、农资、饮用水的批量计量。"
+  },
+  {
+    "symbol": "id_gelas",
+    "name": "格拉丝 (Gelas，印尼)",
+    "conversion": "1id_gelas ≈ 200mL",
+    "intro": "印尼日常小体积单位，适配饮料、茶水、调料的计量场景。"
+  },
+  {
+    "symbol": "sa_saah",
+    "name": "萨阿 (Sa'ah，沙特)",
+    "conversion": "1sa_saah ≈ 40L",
+    "intro": "沙特阿拉伯传统单位，多用于水、石油、粮食的批量计量。"
+  },
+  {
+    "symbol": "eg_ardeb",
+    "name": "阿尔代布 (Ardeb，埃)",
+    "conversion": "1eg_ardeb ≈ 198L",
+    "intro": "埃及农业核心单位，适配小麦、玉米、棉花等农产品的批量计量。"
+  },
+  {
+    "symbol": "mx_fanega",
+    "name": "法内加 (Fanega，墨)",
+    "conversion": "1mx_fanega ≈ 55L",
+    "intro": "墨西哥农业传统单位，多用于玉米、豆类、谷物的批量计量。"
+  },
+  {
+    "symbol": "br_alqueire",
+    "name": "阿尔克伊尔 (Alqueire，巴)",
+    "conversion": "1br_alqueire ≈ 2500L",
+    "intro": "巴西农业大宗单位，适配咖啡、大豆、甘蔗等农产品的计量场景。"
+  },
+  {
+    "symbol": "za_bag",
+    "name": "袋 (Bag，南非)",
+    "conversion": "1za_bag ≈ 90L",
+    "intro": "南非通用体积单位，多用于粮食、水泥、化肥的批量计量。"
+  }
+]

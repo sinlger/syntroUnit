@@ -1,0 +1,116 @@
+[
+  {
+    "symbol": "mm2",
+    "name": "Square Millimeter",
+    "conversion": "1mm2 = 10⁻⁶m2",
+    "intro": "Microscopic area unit, suitable for measuring the area of precision parts, chip circuits, and micro-components."
+  },
+  {
+    "symbol": "cm2",
+    "name": "Square Centimeter",
+    "conversion": "1cm2 = 10⁻⁴m2 = 0.155in2",
+    "intro": "Area unit for small objects, adapted for measuring small areas such as mobile phone screens, paper, and jewelry surfaces."
+  },
+  {
+    "symbol": "dm2",
+    "name": "Square Decimeter",
+    "conversion": "1dm2 = 0.01m2",
+    "intro": "Auxiliary unit for medium areas, mostly used for describing the area of small furniture, tabletops, and plates."
+  },
+  {
+    "symbol": "m2",
+    "name": "Square Meter",
+    "conversion": "1m2 = 100dm2 = 10.7639ft2",
+    "intro": "International benchmark unit of area, the core measurement standard for construction, decoration, real estate, and land surveying."
+  },
+  {
+    "symbol": "a",
+    "name": "Are",
+    "conversion": "1a = 100m2 = 0.0001km2",
+    "intro": "Small area unit for agriculture and forestry, adapted for measuring small farmland, nurseries, and green spaces."
+  },
+  {
+    "symbol": "ha",
+    "name": "Hectare",
+    "conversion": "1ha = 100a = 10000m2 ≈ 2.4711ac",
+    "intro": "Common unit for agriculture and land, suitable for measuring medium and large plots such as farmland, woodland, and parks."
+  },
+  {
+    "symbol": "km2",
+    "name": "Square Kilometer",
+    "conversion": "1km2 = 100ha = 10⁶m2 ≈ 0.3861mi2",
+    "intro": "Large-scale area unit, adapted for describing the area of cities, countries, river basins, and nature reserves."
+  },
+  {
+    "symbol": "in2",
+    "name": "Square Inch",
+    "conversion": "1in2 = 6.4516cm2 = 0.0069ft2",
+    "intro": "Unit for small objects in the UK and US, mostly used for measuring the area of mechanical parts, electronic components, and hardware accessories."
+  },
+  {
+    "symbol": "ft2",
+    "name": "Square Foot",
+    "conversion": "1ft2 = 144in2 ≈ 0.0929m2",
+    "intro": "Core unit for real estate and decoration in the UK and US, adapted for measuring and pricing housing area, flooring, and wall surfaces."
+  },
+  {
+    "symbol": "yd2",
+    "name": "Square Yard",
+    "conversion": "1yd2 = 9ft2 ≈ 0.8361m2",
+    "intro": "Medium area unit in the UK and US, mostly used for measuring the area of construction, site paving, and fabric cutting."
+  },
+  {
+    "symbol": "ro",
+    "name": "Rood",
+    "conversion": "1ro = 1210yd2 ≈ 1011.71m2",
+    "intro": "Traditional agricultural unit in the UK, adapted for area division and measurement of small and medium-sized farms and plots."
+  },
+  {
+    "symbol": "ac",
+    "name": "Acre",
+    "conversion": "1ac = 4ro = 4840yd2 ≈ 0.4047ha",
+    "intro": "Core unit for agriculture and real estate in the UK and US, suitable for describing the area of farmland, manors, and large venues."
+  },
+  {
+    "symbol": "mi2",
+    "name": "Square Mile",
+    "conversion": "1mi2 = 640ac ≈ 2.59km2",
+    "intro": "Large-scale area unit in the UK and US, adapted for measuring the scope of cities, counties, and nature reserves."
+  },
+  {
+    "symbol": "j_tsubo",
+    "name": "Tsubo (Japan/Taiwan China)",
+    "conversion": "1Tsubo ≈ 3.3058m2",
+    "intro": "Core real estate unit in Japan and Taiwan China, mostly used for pricing the area of residential and commercial properties."
+  },
+  {
+    "symbol": "j_se",
+    "name": "Se (Japan)",
+    "conversion": "1Se ≈ 991.74m2",
+    "intro": "Traditional agricultural unit in Japan, adapted for measuring and trading the area of farmland and woodland."
+  },
+  {
+    "symbol": "j_tan",
+    "name": "Tan (Japan)",
+    "conversion": "1Tan = 10Se ≈ 9917.4m2",
+    "intro": "Large agricultural plot unit in Japan, mostly used for describing the area of farms and forest farms."
+  },
+  {
+    "symbol": "j_cho",
+    "name": "Cho (Japan)",
+    "conversion": "1Cho = 10Tan ≈ 99174m2",
+    "intro": "Large-scale land unit in Japan, adapted for measuring the area of county-level regions and large parks."
+  },
+  {
+    "symbol": "c_mu",
+    "name": "Chinese Mu",
+    "conversion": "1Chinese Mu ≈ 666.67m2",
+    "intro": "Core traditional agricultural unit in China, the mainstream standard for farmland and homestead ownership registration."
+  },
+  {
+    "symbol": "c_qing",
+    "name": "Chinese Qing",
+    "conversion": "1Chinese Qing = 100Chinese Mu ≈ 66667m2",
+    "intro": "Bulk agricultural land unit in China, suitable for measuring the area of farms, forest farms, and development zones."
+  }
+]

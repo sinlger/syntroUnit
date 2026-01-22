@@ -1,0 +1,104 @@
+[
+  {
+    "symbol": "nm",
+    "name": "Nanometer",
+    "conversion": "1nm = 10⁻⁹m",
+    "intro": "Microscopic scale unit, often used to describe the size of material molecules and particles, adapted for the biological and semiconductor fields."
+  },
+  {
+    "symbol": "um",
+    "name": "Micrometer",
+    "conversion": "1um = 10⁻⁶m",
+    "intro": "Commonly used in the electronics and optical fields, it can measure precision objects such as chip processes and bacterial sizes."
+  },
+  {
+    "symbol": "mm",
+    "name": "Millimeter",
+    "conversion": "1mm = 10⁻³m",
+    "intro": "Daily precision measurement unit, suitable for describing the size of screws, paper thickness, and small parts."
+  },
+  {
+    "symbol": "cm",
+    "name": "Centimeter",
+    "conversion": "1cm = 10⁻²m = 0.3937in",
+    "intro": "High-frequency small-scale unit in life, supporting common conversions such as centimeters to inches, adapted for measuring the size of mobile phones and books."
+  },
+  {
+    "symbol": "dm",
+    "name": "Decimeter",
+    "conversion": "1dm = 0.1m",
+    "intro": "Auxiliary unit for medium scales, with low daily usage frequency, mostly used for segmental description of objects."
+  },
+  {
+    "symbol": "m",
+    "name": "Meter",
+    "conversion": "1m = 10dm = 100cm = 3.2808ft",
+    "intro": "The SI base unit, defined as the distance traveled by light in a vacuum in 1/299792458 seconds, the core benchmark for length conversion."
+  },
+  {
+    "symbol": "km",
+    "name": "Kilometer",
+    "conversion": "1km = 1000m ≈ 0.6214mi",
+    "intro": "Long-distance measurement unit, suitable for describing highway mileage, urban spacing, and national territorial area spans."
+  },
+  {
+    "symbol": "in",
+    "name": "Inch",
+    "conversion": "1in = 2.54cm = 0.0833ft",
+    "intro": "Common unit in the British and American systems, mostly used in electronic screen size, mechanical manufacturing, and cross-border trade scenarios."
+  },
+  {
+    "symbol": "ft",
+    "name": "Foot",
+    "conversion": "1ft = 12in = 0.3048m",
+    "intro": "Daily unit in the UK and US, adapted for height measurement, building size, and road sign scenarios."
+  },
+  {
+    "symbol": "yd",
+    "name": "Yard",
+    "conversion": "1yd = 3ft = 0.9144m",
+    "intro": "Special unit for sports events and fabric measurement, commonly seen in football fields and fabric cutting scenarios."
+  },
+  {
+    "symbol": "mi",
+    "name": "Mile",
+    "conversion": "1mi ≈ 1.6093km = 1760yd",
+    "intro": "Overseas highway mileage unit, the mainstream long-distance measurement standard in the UK, US, and Commonwealth countries."
+  },
+  {
+    "symbol": "nmi",
+    "name": "Nautical Mile",
+    "conversion": "1nmi = 1852m",
+    "intro": "Special unit for navigation and aviation, formulated based on the arc length of the Earth's meridian, convenient for calculating course distance."
+  },
+  {
+    "symbol": "c_cun",
+    "name": "Chinese Cun",
+    "conversion": "1Chinese Cun ≈ 3.333cm = 0.1Chinese Chi",
+    "intro": "Traditional unit in China, mostly used for measuring traditional fabric cutting and furniture dimensions."
+  },
+  {
+    "symbol": "c_chi",
+    "name": "Chinese Chi",
+    "conversion": "1Chinese Chi = 10Chinese Cun ≈ 0.333m",
+    "intro": "Folk traditional unit in China, adapted for measuring clothing and wood, and the mobile converter can quickly convert between units."
+  },
+  {
+    "symbol": "c_li_dist",
+    "name": "Chinese Li (Market System)",
+    "conversion": "1Chinese Li = 500m = 0.5km",
+    "intro": "Folk distance unit in China, often used for colloquial distance description, in line with traditional usage habits."
+  },
+  {
+    "symbol": "au",
+    "name": "Astronomical Unit",
+    "conversion": "1au ≈ 1.496×10¹¹m",
+    "intro": "Specialized in astronomy, based on the average Earth-Sun distance, describing the distance between celestial bodies in the solar system."
+  },
+  {
+    "symbol": "ly",
+    "name": "Light-Year",
+    "conversion": "1ly ≈ 9.461×10¹⁵m",
+    "intro": "Astronomical scale unit, referring to the distance light travels in a vacuum in one year, used to describe the distance between celestial bodies outside the solar system."
+  }
+]

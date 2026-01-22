@@ -1,0 +1,116 @@
+[
+  {
+    "symbol": "mm2",
+    "name": "平方毫米",
+    "conversion": "1mm2 = 10⁻⁶m2",
+    "intro": "微观面积单位，适用于精密零件、芯片线路、微小构件的面积计量。"
+  },
+  {
+    "symbol": "cm2",
+    "name": "平方厘米",
+    "conversion": "1cm2 = 10⁻⁴m2 = 0.155in2",
+    "intro": "小型物件面积单位，适配手机屏幕、纸张、首饰表面等小面积测量。"
+  },
+  {
+    "symbol": "dm2",
+    "name": "平方分米",
+    "conversion": "1dm2 = 0.01m2",
+    "intro": "中等面积辅助单位，多用于小型家具、桌面、板材的面积描述。"
+  },
+  {
+    "symbol": "m2",
+    "name": "平方米",
+    "conversion": "1m2 = 100dm2 = 10.7639ft2",
+    "intro": "国际面积基准单位，建筑、装修、房产、土地测绘的核心计量标准。"
+  },
+  {
+    "symbol": "a",
+    "name": "公亩",
+    "conversion": "1a = 100m2 = 0.0001km2",
+    "intro": "农业、林业小面积单位，适配小块农田、苗圃、绿地的面积计量。"
+  },
+  {
+    "symbol": "ha",
+    "name": "公顷",
+    "conversion": "1ha = 100a = 10000m2 ≈ 2.4711ac",
+    "intro": "农业、国土常用单位，适用于农田、林地、园区等中大型地块计量。"
+  },
+  {
+    "symbol": "km2",
+    "name": "平方千米",
+    "conversion": "1km2 = 100ha = 10⁶m2 ≈ 0.3861mi2",
+    "intro": "大尺度面积单位，适配城市、国家、流域、自然保护区的面积描述。"
+  },
+  {
+    "symbol": "in2",
+    "name": "平方英寸",
+    "conversion": "1in2 = 6.4516cm2 = 0.0069ft2",
+    "intro": "英美小型物件单位，多用于机械零件、电子元件、五金配件的面积计量。"
+  },
+  {
+    "symbol": "ft2",
+    "name": "平方英尺",
+    "conversion": "1ft2 = 144in2 ≈ 0.0929m2",
+    "intro": "英美房产、装修核心单位，适配房屋面积、地板、墙面的测量与计价。"
+  },
+  {
+    "symbol": "yd2",
+    "name": "平方码",
+    "conversion": "1yd2 = 9ft2 ≈ 0.8361m2",
+    "intro": "英美中面积单位，多用于建筑施工、场地铺装、布料裁剪的面积计量。"
+  },
+  {
+    "symbol": "ro",
+    "name": "罗得(Rood)",
+    "conversion": "1ro = 1210yd2 ≈ 1011.71m2",
+    "intro": "英国传统农业单位，适配中小型农场、地块的面积分割与计量。"
+  },
+  {
+    "symbol": "ac",
+    "name": "英亩",
+    "conversion": "1ac = 4ro = 4840yd2 ≈ 0.4047ha",
+    "intro": "英美农业、地产核心单位，适用于农田、庄园、大型场地的面积描述。"
+  },
+  {
+    "symbol": "mi2",
+    "name": "平方英里",
+    "conversion": "1mi2 = 640ac ≈ 2.59km2",
+    "intro": "英美大尺度面积单位，适配城市、州郡、自然保护区的范围计量。"
+  },
+  {
+    "symbol": "j_tsubo",
+    "name": "坪 (Tsubo)",
+    "conversion": "1j_tsubo ≈ 3.3058m2",
+    "intro": "日本、中国台湾地区房产核心单位，多用于住宅、商铺面积计价。"
+  },
+  {
+    "symbol": "j_se",
+    "name": "亩 (Se)",
+    "conversion": "1j_se ≈ 991.74m2",
+    "intro": "日本传统农业单位，适配农田、林地的面积计量与交易。"
+  },
+  {
+    "symbol": "j_tan",
+    "name": "反 (Tan)",
+    "conversion": "1j_tan = 10j_se ≈ 9917.4m2",
+    "intro": "日本大型农业地块单位，多用于农场、林场的面积描述。"
+  },
+  {
+    "symbol": "j_cho",
+    "name": "町 (Cho)",
+    "conversion": "1j_cho = 10j_tan ≈ 99174m2",
+    "intro": "日本大尺度土地单位，适配县域、大型园区的面积计量。"
+  },
+  {
+    "symbol": "c_mu",
+    "name": "市亩",
+    "conversion": "1c_mu ≈ 666.67m2",
+    "intro": "中国传统农业核心单位，农田、宅基地确权登记的主流标准。"
+  },
+  {
+    "symbol": "c_qing",
+    "name": "市顷",
+    "conversion": "1c_qing = 100c_mu ≈ 66667m2",
+    "intro": "中国大宗农业用地单位，适用于农场、林场、开发区的面积计量。"
+  }
+]

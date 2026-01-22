@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Breadcrumbs } from "@/components/react/Breadcrumbs";
 import { UnitConverter } from "@/components/react/UnitConverter";
@@ -29,9 +30,18 @@ const unitFiles = import.meta.glob("../../../unit/*.json", { eager: true });
 const langFiles = import.meta.glob("../../../i18n/lang/*.json", {
   eager: true,
 });
+// Dynamically load unit context markdown files
+const contextFiles = import.meta.glob('../../../unitcontext/**/*.md', { eager: true });
 
-const unitData = unitFiles[`../../../unit/${unit}.json`]?.default || {};
-const t = langFiles[`../../../i18n/lang/${lang}.json`]?.default || {};
+const unitData = (unitFiles[`../../../unit/${unit}.json`] as any)?.default || {};
+const t = (langFiles[`../../../i18n/lang/${lang}.json`] as any)?.default || {};
+
+// Try to find matching markdown content
+// Path pattern: src/unitcontext/[lang]/[unit].md
+const contextPath = `../../../unitcontext/${lang}/${unit}.md`;
+const contextModule = contextFiles[contextPath];
+const ContextContent = contextModule ? (contextModule as any).Content : null;
+const contextFrontmatter = contextModule ? (contextModule as any).frontmatter || {} : {};
 
 // Prepare translations for the current unit type
 // Flatten the structure: { "length.groups.metric": "Metric", "length.units.m": "Meter" } -> { "metric": "Metric", "m": "Meter" }
@@ -46,32 +56,7 @@ if (t[unit]) {
     Object.assign(unitTranslations, t[unit].units);
   }
 }
-
-const unitTitle =
-  t[unit]?.title || unit.charAt(0).toUpperCase() + unit.slice(1);
-
-const navTranslations = {};
-const allUnitTranslations = {};
-Object.keys(t).forEach(k => {
-  if (t[k]?.title) {
-    navTranslations[k] = t[k].title;
-  }
-  if (t[k]?.units) {
-    Object.assign(allUnitTranslations, t[k].units);
-  }
-  if (t[k]?.groups) {
-    Object.assign(allUnitTranslations, t[k].groups);
-  }
-});
-
 const t_ui = useTranslations(lang as keyof typeof ui);
-
-const recentTranslations = {
-  title: t_ui('components.recent_conversions.title'),
-  noHistory: t_ui('components.recent_conversions.no_history'),
-  clearHistory: t_ui('components.recent_conversions.clear_history'),
-  equalsHowMany: t_ui('components.recent_conversions.equals_how_many'),
-};
 
 const unitConverterTranslations = {
   description: t_ui('components.unit_converter.description'),
@@ -100,13 +85,41 @@ const unitConverterTranslations = {
   step2Calc: t_ui('components.unit_converter.step2_calc'),
   resultText: t_ui('components.unit_converter.result_text'),
   baseUnitDefault: t_ui('components.unit_converter.base_unit_default'),
+  supportedUnitsLabel: t_ui('components.unit_converter.supported_units_label'),
+};
+
+const shortTitle = t[unit]?.title || unit.charAt(0).toUpperCase() + unit.slice(1);
+const unitTitle =
+  contextFrontmatter.title || shortTitle;
+const pageDescription = contextFrontmatter.description || unitConverterTranslations.description;
+const pageKeywords = contextFrontmatter.keywords;
+
+const navTranslations = {};
+const allUnitTranslations = {};
+Object.keys(t).forEach(k => {
+  if (t[k]?.title) {
+    navTranslations[k] = t[k].title;
+  }
+  if (t[k]?.units) {
+    Object.assign(allUnitTranslations, t[k].units);
+  }
+  if (t[k]?.groups) {
+    Object.assign(allUnitTranslations, t[k].groups);
+  }
+});
+
+const recentTranslations = {
+  title: t_ui('components.recent_conversions.title'),
+  noHistory: t_ui('components.recent_conversions.no_history'),
+  clearHistory: t_ui('components.recent_conversions.clear_history'),
+  equalsHowMany: t_ui('components.recent_conversions.equals_how_many'),
 };
 ---
 
 <BaseLayout>
   <div class="container mx-auto max-w-6xl px-4 py-8">
     <Breadcrumbs
-      items={[{ label: "Home", href: `/${lang}` }, { label: unitTitle }]}
+      items={[{ label: "Home", href: `/${lang}` }, { label: shortTitle }]}
     />
 
     <div class="grid gap-8 lg:grid-cols-12 items-start mt-6">
@@ -118,8 +131,13 @@ const unitConverterTranslations = {
           translations={unitTranslations}
           title={unitTitle}
           uiTranslations={unitConverterTranslations}
+          lang={lang}
         />
-        
+        {ContextContent && (
+          <div class="prose dark:prose-invert max-w-none mt-12 mb-8 bg-white dark:bg-zinc-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-zinc-800">
+            <ContextContent />
+          </div>
+        )}
         <div class="mt-5">
           <RandomUnitConversions
             client:load
@@ -133,7 +151,7 @@ const unitConverterTranslations = {
         </div>
       </div>
       <div class="lg:col-span-3 space-y-5">
-        <RecentConversions client:load translations={recentTranslations} unitTranslations={allUnitTranslations} />
+        <RecentConversions client:load translations={recentTranslations} unitTranslations={allUnitTranslations} lang={lang} unitType={unit} />
         <div class="mt-5">
           <UnitNavigation
             client:load

@@ -1,0 +1,98 @@
+[
+  {
+    "symbol": "b",
+    "name": "比特 (Bit)",
+    "conversion": "1b = 0.125B",
+    "intro": "数字存储最小单位，描述二进制数据的单个0/1状态，适配网络传输速率计量。"
+  },
+  {
+    "symbol": "B",
+    "name": "字节 (Byte)",
+    "conversion": "1B = 8b",
+    "intro": "数字存储基础单位，文件大小、内存容量计量的核心基准。"
+  },
+  {
+    "symbol": "KB",
+    "name": "千字节 (KB)",
+    "conversion": "1KB = 1000B",
+    "intro": "十进制小存储单位，硬盘厂商标准，适配小型文本、图片文件计量。"
+  },
+  {
+    "symbol": "MB",
+    "name": "兆字节 (MB)",
+    "conversion": "1MB = 1000KB = 10⁶B",
+    "intro": "十进制常用单位，硬盘、U盘容量标注，适配普通图片、文档计量。"
+  },
+  {
+    "symbol": "GB",
+    "name": "吉字节 (GB)",
+    "conversion": "1GB = 1000MB = 10⁹B",
+    "intro": "十进制主流单位，硬盘、存储卡、宽带流量的核心计量标准。"
+  },
+  {
+    "symbol": "TB",
+    "name": "太字节 (TB)",
+    "conversion": "1TB = 1000GB = 10¹²B",
+    "intro": "十进制大容量单位，机械硬盘、服务器存储的主流计量标准。"
+  },
+  {
+    "symbol": "PB",
+    "name": "拍字节 (PB)",
+    "conversion": "1PB = 1000TB = 10¹⁵B",
+    "intro": "十进制超大规模单位，数据中心、云存储、企业级存储计量标准。"
+  },
+  {
+    "symbol": "EB",
+    "name": "艾字节 (EB)",
+    "conversion": "1EB = 1000PB = 10¹⁸B",
+    "intro": "十进制海量存储单位，适配互联网大厂、国家级数据中心计量。"
+  },
+  {
+    "symbol": "ZB",
+    "name": "泽字节 (ZB)",
+    "conversion": "1ZB = 1000EB = 10²¹B",
+    "intro": "十进制极限存储单位，描述全球互联网数据总量、大型科研数据库。"
+  },
+  {
+    "symbol": "YB",
+    "name": "尧字节 (YB)",
+    "conversion": "1YB = 1000ZB = 10²⁴B",
+    "intro": "十进制顶级存储单位，仅用于理论级数据量、全球数据总量预估。"
+  },
+  {
+    "symbol": "KiB",
+    "name": "二进制千字节 (KiB)",
+    "conversion": "1KiB = 1024B",
+    "intro": "二进制小单位，操作系统标准，适配系统文件、内存占用计量。"
+  },
+  {
+    "symbol": "MiB",
+    "name": "二进制兆字节 (MiB)",
+    "conversion": "1MiB = 1024KiB = 2²⁰B",
+    "intro": "二进制常用单位，操作系统内存、进程占用的核心计量标准。"
+  },
+  {
+    "symbol": "GiB",
+    "name": "二进制吉字节 (GiB)",
+    "conversion": "1GiB = 1024MiB = 2³⁰B",
+    "intro": "二进制主流单位，操作系统硬盘容量、内存容量的显示标准。"
+  },
+  {
+    "symbol": "TiB",
+    "name": "二进制太字节 (TiB)",
+    "conversion": "1TiB = 1024GiB = 2⁴⁰B",
+    "intro": "二进制大容量单位，服务器内存、企业级存储的操作系统计量标准。"
+  },
+  {
+    "symbol": "PiB",
+    "name": "二进制拍字节 (PiB)",
+    "conversion": "1PiB = 1024TiB = 2⁵⁰B",
+    "intro": "二进制超大规模单位，云服务器、大型数据库的操作系统计量标准。"
+  },
+  {
+    "symbol": "EiB",
+    "name": "二进制艾字节 (EiB)",
+    "conversion": "1EiB = 1024PiB = 2⁶⁰B",
+    "intro": "二进制海量单位，适配超大型数据中心、全球分布式存储系统计量。"
+  }
+]

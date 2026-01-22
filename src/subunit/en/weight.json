@@ -1,0 +1,128 @@
+[
+  {
+    "symbol": "ug",
+    "name": "Microgram",
+    "conversion": "1ug = 10⁻⁶g",
+    "intro": "Micro weight unit, suitable for measuring trace reagents and trace element content in medicine and chemical experiments."
+  },
+  {
+    "symbol": "mg",
+    "name": "Milligram",
+    "conversion": "1mg = 10⁻³g",
+    "intro": "Commonly used in the medical field, for describing tablet doses, trace element detection results, and other scenarios."
+  },
+  {
+    "symbol": "g",
+    "name": "Gram",
+    "conversion": "1g = 1000mg = 0.001kg",
+    "intro": "Basic metric weight unit, adapted for weighing daily small objects, measuring food ingredients, and weighing small precious metal items."
+  },
+  {
+    "symbol": "kg",
+    "name": "Kilogram",
+    "conversion": "1kg = 1000g = 2.2046lb",
+    "intro": "Core SI unit, the mainstream standard for daily shopping, weight measurement, and industrial material measurement."
+  },
+  {
+    "symbol": "t",
+    "name": "Tonne",
+    "conversion": "1t = 1000kg = 0.9842UK Ton = 1.1023US Ton",
+    "intro": "Bulk cargo measurement unit, suitable for describing large-scale weight of logistics, minerals, and industrial raw materials."
+  },
+  {
+    "symbol": "q",
+    "name": "Quintal",
+    "conversion": "1q = 100kg",
+    "intro": "Commonly used in some European countries, adapted for batch measurement of agricultural products and light industry raw materials."
+  },
+  {
+    "symbol": "gr",
+    "name": "Grain",
+    "conversion": "1gr ≈ 0.0648g",
+    "intro": "Special unit for jewelry and ammunition measurement, mostly used for precise weighing of precious metal jewelry and firearm ammunition."
+  },
+  {
+    "symbol": "dr",
+    "name": "Dram",
+    "conversion": "1dr ≈ 1.7718g",
+    "intro": "Traditional small weight unit in the UK and US, adapted for measuring spices, medicinal materials, and small precious metal jewelry."
+  },
+  {
+    "symbol": "oz",
+    "name": "Ounce",
+    "conversion": "1oz ≈ 28.35g = 16dr",
+    "intro": "Daily weight unit in the UK and US, often used for measuring food, cosmetics, and ordinary precious metals."
+  },
+  {
+    "symbol": "lb",
+    "name": "Pound",
+    "conversion": "1lb = 16oz ≈ 0.4536kg",
+    "intro": "Mainstream weight unit in the UK and US, adapted for daily measurement scenarios such as body weight, parcels, and retail goods."
+  },
+  {
+    "symbol": "st",
+    "name": "Stone",
+    "conversion": "1st = 14lb ≈ 6.3503kg",
+    "intro": "Traditional body weight unit in the UK, mostly used for colloquial description of human weight and livestock breeding measurement."
+  },
+  {
+    "symbol": "ton_us",
+    "name": "US Ton (Short Ton)",
+    "conversion": "1ton_us = 2000lb ≈ 907.185kg",
+    "intro": "US bulk cargo measurement standard, adapted for cross-border trade scenarios of logistics and industrial raw materials."
+  },
+  {
+    "symbol": "ton_uk",
+    "name": "UK Ton (Long Ton)",
+    "conversion": "1ton_uk = 2240lb ≈ 1016.05kg",
+    "intro": "Bulk cargo unit in the UK and Commonwealth countries, suitable for maritime transportation and mineral trade measurement."
+  },
+  {
+    "symbol": "oz_t",
+    "name": "Troy Ounce",
+    "conversion": "1oz_t ≈ 31.1035g",
+    "intro": "Exclusive measurement unit for precious metals, the core standard for trading jewelry/raw materials such as gold, silver, and platinum."
+  },
+  {
+    "symbol": "ct",
+    "name": "Carat",
+    "conversion": "1ct = 0.2g",
+    "intro": "Specialized in the jewelry industry, used for measuring the weight of precious stones such as diamonds and gemstones."
+  },
+  {
+    "symbol": "c_li",
+    "name": "Chinese Li (Weight)",
+    "conversion": "1Chinese Li ≈ 0.0333g",
+    "intro": "Traditional small weight unit in China, mostly used for precise measurement of traditional Chinese medicinal materials and small precious metal items."
+  },
+  {
+    "symbol": "c_fen",
+    "name": "Chinese Fen",
+    "conversion": "1Chinese Fen = 10Chinese Li ≈ 0.333g",
+    "intro": "Folk traditional unit in China, adapted for small-quantity measurement scenarios of traditional Chinese medicinal materials and gold and silver jewelry."
+  },
+  {
+    "symbol": "c_qian",
+    "name": "Chinese Qian",
+    "conversion": "1Chinese Qian = 10Chinese Fen ≈ 3.333g",
+    "intro": "Traditional weight unit in China, core used for measuring traditional Chinese medicine prescriptions and traditional gold and silver jewelry."
+  },
+  {
+    "symbol": "c_liang",
+    "name": "Chinese Liang",
+    "conversion": "1Chinese Liang = 10Chinese Qian ≈ 33.33g",
+    "intro": "Mainstream traditional folk unit in China, adapted for daily measurement of food ingredients, precious metals, and traditional Chinese medicinal materials."
+  },
+  {
+    "symbol": "c_jin",
+    "name": "Chinese Jin",
+    "conversion": "1Chinese Jin = 10Chinese Liang = 500g = 0.5kg",
+    "intro": "The most commonly used market weight unit in China, the core standard for daily grocery shopping, food weighing, and small commodity transactions."
+  },
+  {
+    "symbol": "c_dan",
+    "name": "Chinese Dan (Weight)",
+    "conversion": "1Chinese Dan = 100Chinese Jin = 50kg",
+    "intro": "Traditional bulk agricultural product measurement unit in China, mostly used for batch trading of grain, cotton, and other crops."
+  }
+]

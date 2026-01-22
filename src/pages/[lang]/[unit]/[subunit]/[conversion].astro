@@ -1,60 +1,76 @@
 ---
+export const prerender = false;
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Breadcrumbs } from "@/components/react/Breadcrumbs";
 import { UnitConverter } from "@/components/react/UnitConverter";
 import { UnitNavigation } from "@/components/react/UnitNavigation";
-import { RandomUnitConversions } from "@/components/react/RandomUnitConversions";
 import { RecentConversions } from "@/components/react/RecentConversions";
+import { RandomUnitConversions } from "@/components/react/RandomUnitConversions";
+import { ConversionTable } from "@/components/react/ConversionTable";
 import { languages, ui } from "@/i18n/ui";
 import { useTranslations } from "@/i18n/utils";
 
-export async function getStaticPaths() {
-  const unitFiles = import.meta.glob("../../../unit/*.json", { eager: true });
-  const paths = [];
+// Set cache headers for Cloudflare and Browser
+// Browser: 1 hour (3600s)
+// CDN (Cloudflare): 7 days (604800s)
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=604800');
 
-  Object.keys(languages).forEach((lang) => {
-    Object.keys(unitFiles).forEach((path) => {
-      const fileName = path.split("/").pop().replace(".json", "");
-      const data = unitFiles[path].default;
-      
-      // Extract all units
-      let allUnits = [];
-      if (Array.isArray(data)) {
-        allUnits = data.flatMap(g => g.units);
-      } else {
-        if (data.groups) allUnits = allUnits.concat(data.groups.flatMap(g => g.units));
-        if (data.units) allUnits = allUnits.concat(data.units);
-      }
+const { lang, unit, subunit, conversion } = Astro.params;
 
-      // Create pairs
-      allUnits.forEach(source => {
-        allUnits.forEach(target => {
-          if (source.id !== target.id) {
-             const subunit = `${source.id}-to-${target.id}`;
-             paths.push({
-               params: { lang, unit: fileName, subunit },
-               props: { sourceId: source.id, targetId: target.id }
-             });
-          }
-        });
-      });
-    });
-  });
+// Parse dynamic params
+let sourceId = '';
+let targetId = '';
+let value = '';
 
-  return paths;
+if (subunit && conversion && conversion.endsWith(subunit)) {
+  const parts = subunit.split('-to-');
+  if (parts.length === 2) {
+     [sourceId, targetId] = parts;
+     const suffix = subunit;
+     if (conversion.endsWith(suffix)) {
+        value = conversion.slice(0, -suffix.length);
+     }
+  }
 }
 
-const { lang, unit, subunit } = Astro.params;
-const { sourceId, targetId } = Astro.props;
+if (!sourceId || !targetId || !value || isNaN(Number(value))) {
+  return Astro.redirect(`/${lang || 'en'}/${unit || 'length'}`);
+}
 
 // Load data using eager glob to ensure Vite handles it correctly
-const unitFiles = import.meta.glob("../../../unit/*.json", { eager: true });
-const langFiles = import.meta.glob("../../../i18n/lang/*.json", {
+const unitFiles = import.meta.glob("../../../../unit/*.json", { eager: true });
+const langFiles = import.meta.glob("../../../../i18n/lang/*.json", {
   eager: true,
 });
+const subunitFiles = import.meta.glob('../../../../subunit/**/*.json', { eager: true });
 
-const unitData = unitFiles[`../../../unit/${unit}.json`]?.default || {};
-const t = langFiles[`../../../i18n/lang/${lang}.json`]?.default || {};
+const unitData = (unitFiles[`../../../../unit/${unit}.json`] as { default: any } | undefined)?.default || {};
+const langModule = langFiles[`../../../../i18n/lang/${lang}.json`] as { default: any } | undefined;
+const t = langModule?.default || {};
+
+// Load subunit specific info
+const subunitPath = `../../../../subunit/${lang}/${unit}.json`;
+const subunitData = (subunitFiles[subunitPath] as { default: any } | undefined)?.default || [];
+const sourceInfo = Array.isArray(subunitData) ? subunitData.find(u => u.symbol === sourceId) : null;
+const targetInfo = Array.isArray(subunitData) ? subunitData.find(u => u.symbol === targetId) : null;
+
+let allUnits = [];
+if (Array.isArray(unitData)) {
+  allUnits = unitData.flatMap(g => g.units || []);
+} else {
+  if (unitData.groups) allUnits = allUnits.concat(unitData.groups.flatMap(g => g.units || []));
+  if (unitData.units) allUnits = allUnits.concat(unitData.units || []);
+}
+
+// Filter out invalid units
+allUnits = allUnits.filter(u => u && u.id);
+
+const sourceUnitObj = allUnits.find(u => u.id === sourceId);
+const targetUnitObj = allUnits.find(u => u.id === targetId);
+
+if (!sourceUnitObj || !targetUnitObj) {
+  return Astro.redirect(`/${lang || 'en'}/${unit || 'length'}`);
+}
 
 // Prepare translations for the current unit type
 const unitTranslations = {};
@@ -120,11 +136,13 @@ const unitConverterTranslations = {
   step2Calc: t_ui('components.unit_converter.step2_calc'),
   resultText: t_ui('components.unit_converter.result_text'),
   baseUnitDefault: t_ui('components.unit_converter.base_unit_default'),
+  supportedUnitsLabel: t_ui('components.unit_converter.supported_units_label'),
 };
 
 const sourceName = unitTranslations[sourceId] || sourceId;
 const targetName = unitTranslations[targetId] || targetId;
 const subTitle = `${sourceName} - ${targetName}`;
+const conversionTitle = `${value} ${sourceName} ${recentTranslations.equalsHowMany} ${targetName}`;
 
 ---
 
@@ -134,7 +152,8 @@ const subTitle = `${sourceName} - ${targetName}`;
       items={[
         { label: "Home", href: `/${lang}` },
         { label: unitTitle, href: `/${lang}/${unit}` },
-        { label: subTitle }
+        { label: subTitle, href: `/${lang}/${unit}/${subunit}` },
+        { label: conversionTitle }
       ]}
     />
 
@@ -145,11 +164,48 @@ const subTitle = `${sourceName} - ${targetName}`;
           data={unitData}
           unitType={unit}
           translations={unitTranslations}
-          title={subTitle}
+          title={conversionTitle}
           uiTranslations={unitConverterTranslations}
           defaultSourceUnit={sourceId}
           defaultTargetUnit={targetId}
+          defaultAmount={value}
+          lang={lang}
         />
+
+        {(sourceInfo || targetInfo) && (
+          <div class="grid md:grid-cols-2 gap-5 mt-5">
+            {sourceInfo && (
+              <div class="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-zinc-800">
+                <h3 class="text-lg font-semibold mb-2 text-slate-800 dark:text-slate-100">{sourceInfo.name} ({sourceInfo.symbol})</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm mb-3 leading-relaxed">{sourceInfo.intro}</p>
+                <div class="bg-slate-50 dark:bg-zinc-950/50 px-3 py-2 rounded-lg border border-slate-100 dark:border-zinc-800">
+                   <p class="text-xs text-slate-500 dark:text-slate-500 font-mono">{sourceInfo.conversion}</p>
+                </div>
+              </div>
+            )}
+            {targetInfo && (
+              <div class="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-zinc-800">
+                <h3 class="text-lg font-semibold mb-2 text-slate-800 dark:text-slate-100">{targetInfo.name} ({targetInfo.symbol})</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm mb-3 leading-relaxed">{targetInfo.intro}</p>
+                <div class="bg-slate-50 dark:bg-zinc-950/50 px-3 py-2 rounded-lg border border-slate-100 dark:border-zinc-800">
+                   <p class="text-xs text-slate-500 dark:text-slate-500 font-mono">{targetInfo.conversion}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        <div class="mt-5">
+          <ConversionTable
+          client:load
+          sourceUnit={sourceUnitObj}
+          targetUnit={targetUnitObj}
+          lang={lang}
+          translations={unitTranslations}
+          title={t_ui('components.conversion_table.title')}
+          unitType={unit}
+        />
+        </div>
         <div class="mt-5">
           <RandomUnitConversions
             client:load
@@ -163,7 +219,7 @@ const subTitle = `${sourceName} - ${targetName}`;
         </div>
       </div>
       <div class="lg:col-span-3 space-y-5">
-        <RecentConversions client:load translations={recentTranslations} unitTranslations={allUnitTranslations} />
+        <RecentConversions client:load translations={recentTranslations} unitTranslations={allUnitTranslations} lang={lang} unitType={unit} />
         <div class="mt-5">
           <UnitNavigation
             client:load

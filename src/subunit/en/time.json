@@ -1,0 +1,74 @@
+[
+  {
+    "symbol": "ns",
+    "name": "Nanosecond",
+    "conversion": "1ns = 10⁻⁹s",
+    "intro": "High-precision time unit, suitable for measuring the time of chip operations, network latency, and quantum experiments."
+  },
+  {
+    "symbol": "us",
+    "name": "Microsecond",
+    "conversion": "1us = 10⁻⁶s = 1000ns",
+    "intro": "Precision time unit, adapted for measuring the response of sensors, industrial control, and high-frequency trading time."
+  },
+  {
+    "symbol": "ms",
+    "name": "Millisecond",
+    "conversion": "1ms = 10⁻³s = 1000us",
+    "intro": "Common high-precision unit, adapted for measuring program response, audio sampling, and electronic device latency."
+  },
+  {
+    "symbol": "s",
+    "name": "Second",
+    "conversion": "1s = 1000ms = 60min⁻¹",
+    "intro": "The international benchmark unit of time, defined as the transition period of cesium-133 atoms, the core of all time measurements."
+  },
+  {
+    "symbol": "min",
+    "name": "Minute",
+    "conversion": "1min = 60s = 1/60h",
+    "intro": "Daily time unit, adapted for measuring the duration of meetings, cooking, sports, and short videos."
+  },
+  {
+    "symbol": "h",
+    "name": "Hour",
+    "conversion": "1h = 60min = 3600s = 1/24d",
+    "intro": "Core daily time unit, the mainstream measurement standard for work, study, travel, and film/television duration."
+  },
+  {
+    "symbol": "d",
+    "name": "Day",
+    "conversion": "1d = 24h = 1440min = 86400s",
+    "intro": "Natural time unit, based on the Earth's rotation period, the core standard for schedules, construction periods, and logistics timeliness."
+  },
+  {
+    "symbol": "wk",
+    "name": "Week",
+    "conversion": "1wk = 7d = 168h",
+    "intro": "Social work-rest unit, adapted for measuring work schedules, course arrangements, and project cycles."
+  },
+  {
+    "symbol": "mo",
+    "name": "Month (Average)",
+    "conversion": "1mo ≈ 30.44d ≈ 4.35wk",
+    "intro": "Calendar unit, based on the lunar phase/revolution period, the core standard for bills, salaries, and repayment cycles."
+  },
+  {
+    "symbol": "yr",
+    "name": "Year",
+    "conversion": "1yr = 12mo ≈ 365.25d = 52.18wk",
+    "intro": "Core calendar unit, based on the Earth's revolution period, the core standard for age, contracts, and financial cycles."
+  },
+  {
+    "symbol": "dec",
+    "name": "Decade",
+    "conversion": "1dec = 10yr",
+    "intro": "Long-cycle time unit, adapted for describing historical stages, industry development, and population statistics time."
+  },
+  {
+    "symbol": "cen",
+    "name": "Century",
+    "conversion": "1cen = 10dec = 100yr",
+    "intro": "Ultra-long cycle unit, adapted for describing historical epochs, civilization development, and geological age time."
+  }
+]

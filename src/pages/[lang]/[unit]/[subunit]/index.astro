@@ -1,0 +1,281 @@
+---
+export const prerender = true;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { UnitConverter } from "@/components/react/UnitConverter";
+import { ConversionTable } from "@/components/react/ConversionTable";
+import { RecentConversions } from "@/components/react/RecentConversions";
+import { UnitNavigation } from "@/components/react/UnitNavigation";
+import { RandomUnitConversions } from "@/components/react/RandomUnitConversions";
+import { Breadcrumbs } from "@/components/react/Breadcrumbs";
+import { useTranslations } from "@/i18n/utils";
+import { ui } from "@/i18n/ui";
+import type { UnitGroup, Unit } from "@/lib/converter";
+
+export async function getStaticPaths() {
+  const languages = ['en', 'zh'];
+  const paths: any[] = [];
+
+  for (const lang of languages) {
+    // Get all unit JSON files
+    const unitFiles = import.meta.glob('/src/unit/*.json', { eager: true });
+    
+    for (const path in unitFiles) {
+      const unit = path.split('/').pop()?.replace('.json', '');
+      if (!unit) continue;
+
+      const unitData = (unitFiles[path] as any).default;
+      let allUnits: any[] = [];
+      
+      if (Array.isArray(unitData)) {
+         allUnits = unitData.flatMap((g: any) => g.units || []);
+      } else {
+         if (unitData.groups) allUnits = allUnits.concat(unitData.groups.flatMap((g: any) => g.units || []));
+         if (unitData.units) allUnits = allUnits.concat(unitData.units || []);
+      }
+      
+      // Filter valid units
+      allUnits = allUnits.filter(u => u && u.id);
+
+      for (const sourceUnit of allUnits) {
+        for (const targetUnit of allUnits) {
+          if (sourceUnit.id === targetUnit.id) continue;
+          
+          paths.push({
+             params: { 
+               lang, 
+               unit, 
+               subunit: `${sourceUnit.id}-to-${targetUnit.id}` 
+             },
+             props: { 
+               sourceId: sourceUnit.id, 
+               targetId: targetUnit.id 
+             }
+          });
+        }
+      }
+    }
+  }
+  
+  return paths;
+}
+
+const { lang, unit, subunit } = Astro.params;
+const { sourceId, targetId } = Astro.props;
+
+// --- Data Loading Logic (Same as [unit].astro but using props) ---
+let unitData;
+try {
+  // Load main unit data
+  // Note: In dev/prod we might need to handle this differently if not using import.meta.glob
+  // But for static generation, dynamic import works if paths are known or we use the same glob strategy
+  // Here we re-import based on the unit param. 
+  // Optimization: In a real app, pass data via props if possible, but getStaticPaths props are limited.
+  // Re-importing is safe for SSG.
+  const allUnitFiles = import.meta.glob('/src/unit/*.json', { eager: true });
+  unitData = (allUnitFiles[`/src/unit/${unit}.json`] as any).default;
+} catch (e) {
+  return Astro.redirect('/404');
+}
+
+// Prepare translations
+const t = (await import(`../../../../i18n/lang/${lang}.json`)).default;
+
+let allUnits: any[] = [];
+if (Array.isArray(unitData)) {
+  allUnits = unitData.flatMap((g: any) => 
+    (g.units || []).map((u: any) => ({ ...u, group_id: g.group_id }))
+  );
+} else {
+  if (unitData.groups) {
+    allUnits = allUnits.concat(
+      unitData.groups.flatMap((g: any) => 
+        (g.units || []).map((u: any) => ({ ...u, group_id: g.group_id }))
+      )
+    );
+  }
+  if (unitData.units) allUnits = allUnits.concat(unitData.units || []);
+}
+
+// Filter out invalid units
+allUnits = allUnits.filter(u => u && u.id);
+
+const sourceUnitObj = allUnits.find(u => u.id === sourceId);
+const targetUnitObj = allUnits.find(u => u.id === targetId);
+
+// Prepare translations for the current unit type
+const unitTranslations = {};
+if (t[unit]) {
+  if (t[unit].groups) {
+    Object.assign(unitTranslations, t[unit].groups);
+  }
+  if (t[unit].units) {
+    Object.assign(unitTranslations, t[unit].units);
+  }
+}
+
+const unitTitle =
+  t[unit]?.title || unit.charAt(0).toUpperCase() + unit.slice(1);
+
+const navTranslations = {};
+const allUnitTranslations = {};
+Object.keys(t).forEach(k => {
+  if (t[k]?.title) {
+    navTranslations[k] = t[k].title;
+  }
+  if (t[k]?.units) {
+    Object.assign(allUnitTranslations, t[k].units);
+  }
+  if (t[k]?.groups) {
+    Object.assign(allUnitTranslations, t[k].groups);
+  }
+});
+
+const t_ui = useTranslations(lang as keyof typeof ui);
+
+const recentTranslations = {
+  title: t_ui('components.recent_conversions.title'),
+  noHistory: t_ui('components.recent_conversions.no_history'),
+  clearHistory: t_ui('components.recent_conversions.clear_history'),
+  equalsHowMany: t_ui('components.recent_conversions.equals_how_many'),
+};
+
+const unitConverterTranslations = {
+  description: t_ui('components.unit_converter.description'),
+  inputPlaceholder: t_ui('components.unit_converter.input_placeholder'),
+  inputLabel: t_ui('components.unit_converter.input_label'),
+  inputTitle: t_ui('components.unit_converter.input_title'),
+  selectSourceLabel: t_ui('components.unit_converter.select_source_label'),
+  selectSourceTitle: t_ui('components.unit_converter.select_source_title'),
+  swapButtonLabel: t_ui('components.unit_converter.swap_button_label'),
+  swapButtonTitle: t_ui('components.unit_converter.swap_button_title'),
+  selectTargetLabel: t_ui('components.unit_converter.select_target_label'),
+  selectTargetTitle: t_ui('components.unit_converter.select_target_title'),
+  convertButtonLabel: t_ui('components.unit_converter.convert_button_label'),
+  convertButtonTitle: t_ui('components.unit_converter.convert_button_title'),
+  convertButtonText: t_ui('components.unit_converter.convert_button_text'),
+  resultLabel: t_ui('components.unit_converter.result_label'),
+  processTitle: t_ui('components.unit_converter.process_title'),
+  formulaTitle: t_ui('components.unit_converter.formula_title'),
+  formulaStep1Desc: t_ui('components.unit_converter.formula_step1_desc'),
+  formulaStep2Desc: t_ui('components.unit_converter.formula_step2_desc'),
+  step1Title: t_ui('components.unit_converter.step1_title'),
+  step1Formula: t_ui('components.unit_converter.step1_formula'),
+  step1Calc: t_ui('components.unit_converter.step1_calc'),
+  step2Title: t_ui('components.unit_converter.step2_title'),
+  step2Formula: t_ui('components.unit_converter.step2_formula'),
+  step2Calc: t_ui('components.unit_converter.step2_calc'),
+  resultText: t_ui('components.unit_converter.result_text'),
+  baseUnitDefault: t_ui('components.unit_converter.base_unit_default'),
+  supportedUnitsLabel: t_ui('components.unit_converter.supported_units_label'),
+};
+
+const sourceName = unitTranslations[sourceId] || sourceId;
+const targetName = unitTranslations[targetId] || targetId;
+const subTitle = `${sourceName} - ${targetName}`;
+
+const getDescription = (unitObj: any) => {
+  if (!unitObj) return '';
+  const groupName = unitObj.group_id ? (unitTranslations[unitObj.group_id] || unitObj.group_id) : '';
+  const name = unitTranslations[unitObj.id] || unitObj.id;
+  
+  return t_ui('components.unit_info.description_template')
+    .replace('{name}', name)
+    .replace('{symbol}', unitObj.symbol)
+    .replace('{type}', unitTitle)
+    .replace('{group}', groupName || unitTitle);
+};
+
+const sourceInfo = {
+  name: sourceName,
+  symbol: sourceUnitObj?.symbol || sourceId,
+  description: getDescription(sourceUnitObj)
+};
+
+const targetInfo = {
+  name: targetName,
+  symbol: targetUnitObj?.symbol || targetId,
+  description: getDescription(targetUnitObj)
+};
+
+---
+
+<BaseLayout>
+  <div class="container mx-auto max-w-6xl px-4 py-8">
+    <Breadcrumbs
+      items={[
+        { label: "Home", href: `/${lang}` },
+        { label: unitTitle, href: `/${lang}/${unit}` },
+        { label: subTitle }
+      ]}
+    />
+
+    <div class="grid gap-8 lg:grid-cols-12 items-start mt-6">
+      <div class="lg:col-span-9">
+        <UnitConverter
+          client:load
+          data={unitData}
+          unitType={unit}
+          translations={unitTranslations}
+          title={subTitle}
+          uiTranslations={unitConverterTranslations}
+          defaultSourceUnit={sourceId}
+          defaultTargetUnit={targetId}
+          lang={lang}
+        />
+
+        {(sourceInfo || targetInfo) && (
+          <div class="grid md:grid-cols-2 gap-5 mt-5">
+            {sourceInfo && (
+              <div class="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-zinc-800">
+                <h3 class="text-lg font-semibold mb-2 text-slate-800 dark:text-slate-100">{sourceInfo.name} ({sourceInfo.symbol})</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{sourceInfo.description}</p>
+              </div>
+            )}
+            {targetInfo && (
+              <div class="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-zinc-800">
+                <h3 class="text-lg font-semibold mb-2 text-slate-800 dark:text-slate-100">{targetInfo.name} ({targetInfo.symbol})</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{targetInfo.description}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        <div class="mt-5">
+        <ConversionTable
+          client:visible
+          sourceUnit={sourceUnitObj}
+          targetUnit={targetUnitObj}
+          lang={lang}
+          translations={unitTranslations}
+          title={t_ui('components.conversion_table.title')}
+          unitType={unit}
+        />
+        </div>
+        <div class="mt-5">
+          <RandomUnitConversions
+            client:load
+            data={unitData}
+            unitType={unit}
+            lang={lang}
+            translations={unitTranslations}
+            title={t_ui('components.random_conversions.title')}
+            conversionFormat={t_ui('components.random_conversions.link_format')}
+          />
+        </div>
+      </div>
+      <div class="lg:col-span-3 space-y-5">
+        <RecentConversions client:load translations={recentTranslations} unitTranslations={allUnitTranslations} lang={lang} />
+        <div class="mt-5">
+          <UnitNavigation
+            client:load
+            lang={lang}
+            currentUnit={unit}
+            translations={navTranslations}
+            title={t_ui('components.unit_navigation.title')}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

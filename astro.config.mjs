@@ -6,7 +6,7 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: "https://yoursite.com",
   adapter: cloudflare(),
-  output:"static",
+  output: "server",
   i18n: {
     defaultLocale: "en",
     locales: ["en", "zh"],
@@ -17,5 +17,10 @@ export default defineConfig({
   integrations: [sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      watch: {
+        ignored: ['**/.wrangler/**']
+      }
+    }
   },
 });

@@ -158,7 +158,7 @@
         }
     },
     "time": {
-        "title": "Time & Date Units",
+        "title": "Time Units",
         "groups": {
             "precise_time": "Precise Time (SI)",
             "common_time": "Common Time Units",

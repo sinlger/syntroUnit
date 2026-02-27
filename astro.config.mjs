@@ -1,11 +1,16 @@
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 export default defineConfig({
-  site: "https://yoursite.com",
-  adapter: cloudflare(),
+  site: "https://main.syntrounit.pages.dev",
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+    imageService: 'compile',
+  }),
   output: "server",
   i18n: {
     defaultLocale: "en",

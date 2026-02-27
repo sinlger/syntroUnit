@@ -5,7 +5,7 @@ import {
   useTranslations
 } from "../../i18n/utils";
 import { defaultLang } from "../../i18n/ui";
-import { Sun, Moon } from "lucide-astro";
+import { Sun, Moon, Calculator } from "lucide-astro";
 import { LanguageSwitcher } from "../react/LanguageSwitcher";
 
 const lang = getLangFromUrl(Astro.url);
@@ -18,15 +18,10 @@ const t = useTranslations(lang);
     <div class="flex justify-between h-16 items-center">
       <div class="flex items-center gap-2">
         <div class="p-2 rounded-lg text-foreground">
-          <OptimizedImage
-            src="/logo.svg"
-            alt="UniConvert"
-            width={32}
-            height={32}
-          />
+          <Calculator class="w-6 h-6" />
         </div>
         <span
-          class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600"
+          class="text-xl font-bold "
         >
           UniConvert
         </span>

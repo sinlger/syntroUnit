@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from "@tailwindcss/vite";
@@ -9,7 +9,7 @@ export default defineConfig({
     platformProxy: {
       enabled: true,
     },
-    imageService: 'compile',
+    imageService: 'compile'
   }),
   output: "server",
   i18n: {
@@ -22,6 +22,11 @@ export default defineConfig({
   integrations: [sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: import.meta.env.PROD && {
+        'react-dom/server': 'react-dom/server.edge'
+      }
+    },
     server: {
       watch: {
         ignored: ['**/.wrangler/**']

@@ -1,16 +1,12 @@
 ---
 import OptimizedImage from "../../layouts/utilities/OptimizedImage.astro";
-import {
-  getLangFromUrl,
-  useTranslations
-} from "../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { defaultLang } from "../../i18n/ui";
 import { Sun, Moon, Calculator } from "lucide-astro";
 import { LanguageSwitcher } from "../react/LanguageSwitcher";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
 ---
 
 <nav class="bg-background border-b border-border sticky top-0 z-50">
@@ -20,17 +16,17 @@ const t = useTranslations(lang);
         <div class="p-2 rounded-lg text-foreground">
           <Calculator class="w-6 h-6" />
         </div>
-        <span
-          class="text-xl font-bold "
-        >
-          UniConvert
+        <span class="text-xl font-bold">
+          <a href={`/${lang === defaultLang ? "" : lang}`}>UniConvert</a>
         </span>
       </div>
-      <div class="hidden md:flex space-x-8 text-sm font-medium text-muted-foreground">
-        <a href={`/${lang === defaultLang ? '' : lang}`} class="hover:text-primary transition">{t('nav.home')}</a>
+      <div
+        class="hidden md:flex space-x-8 text-sm font-medium text-muted-foreground opacity-0 pointer-events-none select-none"
+      >
+        <!-- <a href={`/${lang === defaultLang ? '' : lang}`} class="hover:text-primary transition">{t('nav.home')}</a>
         <a href="#" class="hover:text-primary transition">{t('nav.common')}</a>
         <a href="#" class="hover:text-primary transition">{t('nav.favorites')}</a>
-        <a href="#" class="hover:text-primary transition">{t('nav.about')}</a>
+        <a href="#" class="hover:text-primary transition">{t('nav.about')}</a> -->
       </div>
       <div class="flex items-center gap-4">
         <!-- Theme Toggle -->

@@ -1,0 +1,29 @@
+[
+  {
+    "group_id": "metric",
+    "units": [
+      {"id": "m_s", "symbol": "m/s", "ratio": 1},
+      {"id": "km_h", "symbol": "km/h", "ratio": 0.2777777777777778}
+    ]
+  },
+  {
+    "group_id": "imperial",
+    "units": [
+      {"id": "mph", "symbol": "mph", "ratio": 0.44704},
+      {"id": "fps", "symbol": "ft/s", "ratio": 0.3048}
+    ]
+  },
+  {
+    "group_id": "marine_aviation",
+    "units": [
+      {"id": "knot", "symbol": "kn", "ratio": 0.5144444444444444}
+    ]
+  },
+  {
+    "group_id": "scientific",
+    "units": [
+      {"id": "mach", "symbol": "Mach", "ratio": 340.3},
+      {"id": "c", "symbol": "c", "ratio": 299792458}
+    ]
+  }
+]

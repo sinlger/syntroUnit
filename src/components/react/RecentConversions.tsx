@@ -71,7 +71,7 @@ export function RecentConversions({ translations = {}, unitTranslations = {}, la
     // Refresh every 30s or on specific events if needed
     const interval = setInterval(loadHistory, 30000)
     return () => clearInterval(interval)
-  }, [unitTranslations])
+  }, [unitTranslations, unitType])
 
   // Removed clearHistory functionality as it is now server-side driven
 

@@ -14,7 +14,7 @@ export async function getStaticPaths() {
   const units = Object.keys(unitFiles).map((path) => {
     const fileName = path.split("/").pop();
     return fileName.replace(".json", "");
-  });
+  }).filter(unit => unit !== 'ring');
 
   return Object.keys(languages).flatMap((lang) =>
     units.map((unit) => ({

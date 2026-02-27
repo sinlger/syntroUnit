@@ -14,7 +14,8 @@ import {
   Zap, 
   Database,
   Box,
-  Droplets
+  Droplets,
+  Compass
 } from "lucide-react"
 
 // Automatically load all unit configuration files from src/unit
@@ -24,7 +25,7 @@ const unitFiles = import.meta.glob('@/unit/*.json', { eager: true })
 const unitTypes = Object.keys(unitFiles).map((path) => {
   const fileName = path.split('/').pop()?.replace('.json', '')
   return fileName
-}).filter(Boolean) as string[]
+}).filter(Boolean).filter(u => u !== 'ring') as string[]
 
 const iconMap: Record<string, React.ComponentType<any>> = {
   length: Ruler,
@@ -34,6 +35,7 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   temperature: Thermometer,
   time: Clock,
   speed: Zap,
+  angle: Compass,
   digital: Database,
   liquid: Droplets,
   // default

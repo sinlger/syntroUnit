@@ -178,5 +178,40 @@
             "dec": "Decade",
             "cen": "Century"
         }
+    },
+    "speed": {
+        "title": "Speed & Velocity",
+        "groups": {
+            "metric": "Metric Units",
+            "imperial": "Imperial Units",
+            "marine_aviation": "Marine & Aviation",
+            "scientific": "Scientific / Physics"
+        },
+        "units": {
+            "m_s": "Meter per second",
+            "km_h": "Kilometer per hour",
+            "mph": "Mile per hour",
+            "fps": "Foot per second",
+            "knot": "Knot (nmi/h)",
+            "mach": "Mach (STP)",
+            "c": "Speed of Light"
+        }
+    },
+    "angle": {
+        "title": "Angle Units",
+        "groups": {
+            "common": "Common Units",
+            "high_precision": "Sub-degree Units",
+            "navigation": "Navigation & Military"
+        },
+        "units": {
+            "deg": "Degree",
+            "rad": "Radian",
+            "grad": "Gradian",
+            "arcmin": "Minute of Arc",
+            "arcsec": "Second of Arc",
+            "rev": "Revolution / Circle",
+            "mil": "NATO Mil"
+        }
     }
 }

@@ -1,0 +1,24 @@
+[
+  {
+    "group_id": "common",
+    "units": [
+      {"id": "deg", "symbol": "°", "ratio": 1},
+      {"id": "rad", "symbol": "rad", "ratio": 57.295779513},
+      {"id": "grad", "symbol": "gon", "ratio": 0.9},
+      {"id": "rev", "symbol": "rev", "ratio": 360}
+    ]
+  },
+  {
+    "group_id": "high_precision",
+    "units": [
+      {"id": "arcmin", "symbol": "′", "ratio": 0.016666666666666666},
+      {"id": "arcsec", "symbol": "″", "ratio": 0.0002777777777777778}
+    ]
+  },
+  {
+    "group_id": "navigation",
+    "units": [
+      {"id": "mil", "symbol": "mil", "ratio": 0.05625}
+    ]
+  }
+]

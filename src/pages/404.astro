@@ -34,7 +34,8 @@ const title = "404 - Page Not Found";
         variant="outline" 
         size="lg" 
         className="gap-2 min-w-[140px]"
-        onclick="history.back()"
+        onClick={() => history.back()}
+        client:load
       >
         <ArrowLeft class="w-4 h-4" />
         {t('pages.404.go_back')}

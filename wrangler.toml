@@ -1,7 +1,8 @@
 name = "syntrounit"
-compatibility_date = "2024-01-01"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
 
 [[d1_databases]]
 binding = "DB"
 database_name = "syntrounit-db"
-database_id = "YOUR_DATABASE_ID_HERE"
+database_id = "7a578fb5-e72c-441e-bd14-8e64261f2c9a"

@@ -195,5 +195,40 @@
             "dec": "十年",
             "cen": "世纪"
         }
+    },
+    "speed": {
+        "title": "速度转换",
+        "groups": {
+            "metric": "公制单位",
+            "imperial": "英制单位",
+            "marine_aviation": "航海与航空",
+            "scientific": "科学与物理"
+        },
+        "units": {
+            "m_s": "米/秒 (m/s)",
+            "km_h": "千米/小时 (km/h)",
+            "mph": "英里/小时 (mph)",
+            "fps": "英尺/秒 (ft/s)",
+            "knot": "节 (海里/小时)",
+            "mach": "马赫 (标准大气压)",
+            "c": "光速"
+        }
+    },
+    "angle": {
+        "title": "角度转换",
+        "groups": {
+            "common": "常用单位",
+            "high_precision": "高精度单位",
+            "navigation": "航海与军事"
+        },
+        "units": {
+            "deg": "度",
+            "rad": "弧度",
+            "grad": "百分度 (Gons)",
+            "arcmin": "分 (角分)",
+            "arcsec": "秒 (角秒)",
+            "rev": "转/圆周",
+            "mil": "密位 (北约密位)"
+        }
     }
 }

@@ -16,8 +16,6 @@ interface LanguageSwitcherProps {
 }
 
 export function LanguageSwitcher({ currentLang, url }: LanguageSwitcherProps) {
-  const [isOpen, setIsOpen] = React.useState(false)
-
   // Calculate paths for other languages
   const getPathForLang = (targetLang: string) => {
     const pathname = new URL(url).pathname
@@ -35,7 +33,7 @@ export function LanguageSwitcher({ currentLang, url }: LanguageSwitcherProps) {
   }
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="rounded-full text-slate-500 hover:bg-slate-100">
           <Languages className="h-[1.2rem] w-[1.2rem]" />

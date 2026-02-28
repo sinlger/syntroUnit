@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { languages } from "@/i18n/ui";
+import { useTranslations } from "@/i18n/utils";
+import JsonTool from "@/components/react/tools/JsonTool";
+import JsonDoc from "@/components/docs/JsonDoc.astro";
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+---
+<BaseLayout title={t('tools.json.page_title')} description={t('tools.json.page_desc')}>
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-foreground mb-4">{t('tools.json.page_title')}</h1>
+        <p class="text-lg text-muted-foreground">{t('tools.json.page_desc')}</p>
+      </div>
+      
+      <JsonTool client:only="react" />
+      
+      <JsonDoc lang={lang as 'en' | 'zh'} />
+    </div>
+  </div>
+</BaseLayout>

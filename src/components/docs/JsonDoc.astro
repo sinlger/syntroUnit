@@ -1,0 +1,205 @@
+---
+interface Props {
+  lang: "en" | "zh";
+}
+
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    title: "How to use the JSON Tool",
+    sections: [
+      {
+        title: "JSON Formatter & Validator",
+        desc: "Paste your JSON code into the editor. Use the toolbar buttons to:",
+        list: [
+          "<strong>Format</strong>: Beautify minified JSON with proper indentation.",
+          "<strong>Minify</strong>: Remove whitespace to reduce file size.",
+          "<strong>Validate</strong>: Check for syntax errors. Errors will be highlighted.",
+          "<strong>Copy</strong>: Copy the result to your clipboard.",
+        ],
+      },
+      {
+        title: "JSON Diff Tool",
+        desc: "Compare two JSON objects side-by-side:",
+        list: [
+          "Switch to the <strong>Diff</strong> tab.",
+          "Paste the original JSON on the left and the modified JSON on the right.",
+          "Click <strong>Compare Diff</strong> to see differences highlighted in color.",
+          "Click <strong>Edit Inputs</strong> to modify the JSON content again.",
+        ],
+      },
+      {
+        title: "JSON Schema Tools",
+        desc: "Validate or generate JSON Schemas:",
+        list: [
+          "<strong>Validate Mode</strong>: Paste your JSON data and a JSON Schema to verify if the data conforms to the schema.",
+          "<strong>Generate Mode</strong>: Paste a JSON object and click <strong>Generate</strong> to automatically create a valid JSON Schema definition.",
+        ],
+      },
+      {
+        title: "Privacy & Security",
+        desc: "This tool runs entirely in your browser. No data is sent to any server. Your JSON data remains private and secure.",
+      },
+    ],
+    seo: {
+      title: "What is JSON?",
+      intro:
+        "JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write, and easy for machines to parse and generate. It is based on a subset of the JavaScript Programming Language Standard ECMA-262 3rd Edition - December 1999.",
+      syntax: {
+        title: "JSON Syntax Rules",
+        items: [
+          "Data is in name/value pairs",
+          "Data is separated by commas",
+          "Curly braces hold objects",
+          "Square brackets hold arrays",
+        ],
+      },
+      faq: [
+        {
+          q: "Why use a JSON Formatter?",
+          a: "JSON data often comes in a minified format (single line) to save space, making it hard to read. A formatter adds proper indentation and line breaks.",
+        },
+        {
+          q: "Is my JSON data safe?",
+          a: "Yes, our JSON tools run locally in your browser using JavaScript. No data is ever sent to our servers.",
+        },
+        {
+          q: "What is JSON Schema?",
+          a: "JSON Schema is a vocabulary that allows you to annotate and validate JSON documents. It describes your data format and provides clear documentation.",
+        },
+      ],
+    },
+  },
+  zh: {
+    title: "如何使用 JSON 工具",
+    sections: [
+      {
+        title: "JSON 格式化与校验",
+        desc: "将您的 JSON 代码粘贴到编辑器中。使用工具栏按钮进行以下操作：",
+        list: [
+          "<strong>格式化 (Format)</strong>：美化 JSON 代码，使其具有正确的缩进。",
+          "<strong>压缩 (Minify)</strong>：移除空白字符以减小文件体积。",
+          "<strong>校验 (Validate)</strong>：检查语法错误。错误信息将会在下方显示。",
+          "<strong>复制 (Copy)</strong>：将结果复制到剪贴板。",
+        ],
+      },
+      {
+        title: "JSON 差异对比 (Diff)",
+        desc: "并排比较两个 JSON 对象：",
+        list: [
+          "切换到 <strong>Diff</strong> 标签页。",
+          "在左侧粘贴原始 JSON，在右侧粘贴修改后的 JSON。",
+          "点击 <strong>Compare Diff</strong> 查看差异，差异部分将以颜色高亮显示。",
+          "点击 <strong>Edit Inputs</strong> 返回编辑模式。",
+        ],
+      },
+      {
+        title: "JSON Schema 工具",
+        desc: "校验或生成 JSON Schema：",
+        list: [
+          "<strong>校验模式 (Validate)</strong>：粘贴 JSON 数据和 JSON Schema，验证数据是否符合 Schema 规范。",
+          "<strong>生成模式 (Generate)</strong>：粘贴 JSON 对象并点击 <strong>Generate</strong>，自动生成对应的 JSON Schema 定义。",
+        ],
+      },
+      {
+        title: "隐私与安全",
+        desc: "本工具完全在您的浏览器中运行。没有任何数据会被发送到服务器。您的 JSON 数据是私密且安全的。",
+      },
+    ],
+    seo: {
+      title: "什么是 JSON？",
+      intro:
+        "JSON (JavaScript Object Notation) 是一种轻量级的数据交换格式。它基于 ECMAScript (欧洲计算机协会制定的js规范)的一个子集，采用完全独立于编程语言的文本格式来存储和表示数据。",
+      syntax: {
+        title: "JSON 语法规则",
+        items: [
+          "数据在名称/值对中",
+          "数据由逗号分隔",
+          "大括号 {} 保存对象",
+          "中括号 [] 保存数组",
+        ],
+      },
+      faq: [
+        {
+          q: "为什么需要 JSON 格式化工具？",
+          a: "JSON 数据通常以压缩格式（单行）传输以节省带宽，这使得人类难以阅读。格式化工具可以添加缩进和换行，使其清晰易读。",
+        },
+        {
+          q: "我的数据安全吗？",
+          a: "绝对安全。我们的 JSON 工具完全在您的浏览器本地运行，利用 JavaScript 处理数据。任何数据都不会被上传到服务器。",
+        },
+        {
+          q: "什么是 JSON Schema？",
+          a: "JSON Schema 是一种基于 JSON 的格式，用于定义 JSON 数据的结构。它可以用来校验数据格式、生成文档以及自动化测试。",
+        },
+      ],
+    },
+  },
+};
+
+const t = content[lang] || content.en;
+---
+
+<div class="mt-16 space-y-16">
+  {/* SEO Content */}
+  <section class="prose dark:prose-invert max-w-none">
+    <h2 class="text-2xl font-bold mb-4">{t.seo.title}</h2>
+    <p class="text-muted-foreground mb-8 text-lg leading-relaxed">
+      {t.seo.intro}
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="text-xl font-semibold mb-4">{t.seo.syntax.title}</h3>
+        <ul class="space-y-3">
+          {
+            t.seo.syntax.items.map((item) => (
+              <li class="flex items-center gap-2 text-muted-foreground">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-4">FAQ</h3>
+        <div class="space-y-6">
+          {
+            t.seo.faq.map((item) => (
+              <div>
+                <h4 class="font-medium text-foreground mb-2">{item.q}</h4>
+                <p class="text-sm text-muted-foreground">{item.a}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+  {/* Usage Guide */}
+  <section class="prose dark:prose-invert max-w-none">
+    <h2 class="text-2xl font-bold mb-6">{t.title}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        t.sections.map((section) => (
+          <div class="bg-card border border-border rounded-lg p-6 shadow-sm">
+            <h3 class="text-xl font-semibold mb-3 text-card-foreground">
+              {section.title}
+            </h3>
+            <p class="text-muted-foreground mb-4">{section.desc}</p>
+            {section.list && (
+              <ul class="list-disc list-inside space-y-2 text-muted-foreground">
+                {section.list.map((item) => (
+                  <li set:html={item} />
+                ))}
+              </ul>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</div>

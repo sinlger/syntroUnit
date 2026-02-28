@@ -1,0 +1,28 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { languages } from "@/i18n/ui";
+import { useTranslations } from "@/i18n/utils";
+
+export function getStaticPaths() {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as any);
+---
+<BaseLayout>
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-foreground mb-4">{t('tools.regex.title')}</h1>
+        <p class="text-lg text-muted-foreground">{t('tools.regex.desc')}</p>
+      </div>
+      
+      <div class="bg-card rounded-xl border border-border shadow-sm overflow-hidden p-8 min-h-[300px] flex items-center justify-center">
+        <p class="text-muted-foreground">Tool implementation coming soon...</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

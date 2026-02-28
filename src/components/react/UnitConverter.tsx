@@ -230,6 +230,7 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
         const baseUnitName = translations[calculation.baseUnit.id] || calculation.baseUnit.name || calculation.baseUnit.id
         const isSourceBase = fromUnit.id === calculation.baseUnit.id
         const isTargetBase = toUnit.id === calculation.baseUnit.id
+        const isTwoStep = !isSourceBase && !isTargetBase
 
         coreFormula = {
             title: t.formulaTitle.replace(/{baseUnit}/g, baseUnitName),
@@ -237,10 +238,14 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
         }
         
         if (!isSourceBase) {
-             coreFormula.steps.push(t.formulaStep1Desc.replace(/{baseUnit}/g, baseUnitName))
+             let desc = t.formulaStep1Desc.replace(/{baseUnit}/g, baseUnitName)
+             if (!isTwoStep) desc = desc.replace(/^[1-9]\.\s*/, '')
+             coreFormula.steps.push(desc)
         }
         if (!isTargetBase) {
-             coreFormula.steps.push(t.formulaStep2Desc.replace(/{baseUnit}/g, baseUnitName))
+             let desc = t.formulaStep2Desc.replace(/{baseUnit}/g, baseUnitName)
+             if (!isTwoStep) desc = desc.replace(/^[1-9]\.\s*/, '')
+             coreFormula.steps.push(desc)
         }
 
         // Step 1: Source -> Base
@@ -248,8 +253,11 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
             const ratio = fromUnit.ratio
             const resultFormatted = calculation.baseValue.toPrecision(10).replace(/\.?0+$/, "")
             
+            let title = t.step1Title.replace('{sourceUnit}', sourceName).replace('{baseUnit}', baseUnitName)
+            if (!isTwoStep) title = title.replace(/^(步骤\s*1|第一步|Step\s*1)[:：]?\s*/i, '')
+
             steps.push({
-                title: t.step1Title.replace('{sourceUnit}', sourceName).replace('{baseUnit}', baseUnitName),
+                title,
                 formula: t.step1Formula
                     .replace('{sourceUnit}', sourceName)
                     .replace('{baseUnit}', baseUnitName)
@@ -267,8 +275,11 @@ export function UnitConverter({ data, unitType, translations = {}, title, uiTran
             const ratio = toUnit.ratio
             const step1Value = !isSourceBase ? calculation.baseValue.toPrecision(10).replace(/\.?0+$/, "") : amount
             
+            let title = t.step2Title.replace('{baseUnit}', baseUnitName).replace('{targetUnit}', targetName)
+            if (!isTwoStep) title = title.replace(/^(步骤\s*2|第二步|Step\s*2)[:：]?\s*/i, '')
+
             steps.push({
-                title: t.step2Title.replace('{baseUnit}', baseUnitName).replace('{targetUnit}', targetName),
+                title,
                 formula: t.step2Formula
                     .replace('{targetUnit}', targetName)
                     .replace('{baseUnit}', baseUnitName)
